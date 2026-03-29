@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
 import "../css/Navbar.css";
+import logo from "../assets/logo.jpg"; // ✅ import logo
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -14,6 +15,7 @@ export default function Navbar() {
     { name: "Gallery", path: "/gallery" },
     { name: "News", path: "/news" },
     { name: "Contact", path: "/contact" },
+    { name: "Enroll", path: "/enroll" },
   ];
 
   return (
@@ -21,9 +23,9 @@ export default function Navbar() {
       <div className="navbar-container">
 
         {/* 🔥 LOGO */}
-        <h1 className="logo">
-          Sharp <span>Class</span> Plus
-        </h1>
+        <Link to="/" className="logo">
+          <img src={logo} alt="Sharp Class Plus Logo" />
+        </Link>
 
         {/* DESKTOP MENU */}
         <div className="nav-links">
@@ -38,11 +40,6 @@ export default function Navbar() {
               {link.name}
             </Link>
           ))}
-
-          {/* 🔥 CTA BUTTON */}
-          <Link to="/contact" className="nav-btn">
-            Enroll Now
-          </Link>
         </div>
 
         {/* MOBILE ICON */}
@@ -70,7 +67,11 @@ export default function Navbar() {
             </Link>
           ))}
 
-          <Link to="/contact" className="mobile-btn">
+          <Link
+            to="/enroll"
+            onClick={() => setOpen(false)}
+            className="mobile-btn"
+          >
             Enroll Now
           </Link>
         </div>

@@ -1,6 +1,12 @@
-/* HERO SECTION */
+/* GLOBAL */
+.home {
+  font-family: "Poppins", sans-serif;
+  background: #f8fafc;
+}
+
+/* HERO */
 .hero {
-  height: 100vh;
+  height: 90vh;
   background-size: cover;
   background-position: center;
   position: relative;
@@ -10,37 +16,39 @@
   justify-content: center;
 }
 
-/* DARK OVERLAY */
 .overlay {
   position: absolute;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.6);
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(0,0,0,0.7),
+    rgba(37,99,235,0.6)
+  );
 }
 
-/* HERO CONTENT */
 .hero-content {
   position: relative;
-  text-align: center;
   color: white;
+  text-align: center;
   max-width: 700px;
   padding: 20px;
+  animation: fadeUp 1s ease;
 }
 
 .hero-content h1 {
   font-size: 48px;
   font-weight: 800;
-  line-height: 1.3;
+  line-height: 1.2;
 }
 
 .hero-content span {
-  color: #facc15;
+  color: #60a5fa;
 }
 
 .hero-content p {
   margin-top: 15px;
-  font-size: 18px;
-  color: #e5e7eb;
+  font-size: 16px;
+  opacity: 0.9;
 }
 
 /* BUTTONS */
@@ -48,61 +56,124 @@
   margin-top: 25px;
 }
 
-.primary-btn {
-  background: linear-gradient(to right, #2563eb, #1d4ed8);
-  color: white;
+.primary-btn,
+.secondary-btn {
   padding: 12px 25px;
-  border: none;
+  margin: 5px;
   border-radius: 30px;
-  margin-right: 10px;
   font-weight: 600;
   cursor: pointer;
+  border: none;
   transition: 0.3s;
 }
 
+.primary-btn {
+  background: linear-gradient(to right, #2563eb, #1d4ed8);
+  color: white;
+}
+
 .primary-btn:hover {
-  transform: translateY(-2px);
+  transform: translateY(-3px);
 }
 
 .secondary-btn {
   background: transparent;
   border: 2px solid white;
   color: white;
-  padding: 12px 25px;
-  border-radius: 30px;
-  cursor: pointer;
 }
 
 .secondary-btn:hover {
   background: white;
-  color: black;
+  color: #2563eb;
+}
+
+/* COURSES */
+.courses-section {
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.courses-section h2 {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.courses {
+  display: flex;
+  gap: 25px;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.course-card {
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(12px);
+
+  padding: 25px;
+  width: 260px;
+  border-radius: 15px;
+
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  transition: 0.3s;
+}
+
+.course-card:hover {
+  transform: translateY(-10px) scale(1.03);
+}
+
+/* PRINCIPAL */
+.principal-section {
+  padding: 80px 20px;
+  background: linear-gradient(to right, #2563eb, #1e40af);
+  color: white;
+  text-align: center;
+}
+
+.principal-content p {
+  max-width: 700px;
+  margin: auto;
+  margin-top: 15px;
+  font-style: italic;
+}
+
+/* ACHIEVEMENTS */
+.achievements {
+  display: flex;
+  justify-content: space-around;
+  padding: 70px 20px;
+  background: #0f172a;
+  color: white;
+}
+
+.achieve-box {
+  text-align: center;
+}
+
+.achieve-box h2 {
+  font-size: 40px;
+  color: #60a5fa;
 }
 
 /* FEATURES */
 .features-section {
   padding: 80px 20px;
   text-align: center;
-  background: #f9fafb;
-}
-
-.features-section h2 {
-  font-size: 32px;
-  margin-bottom: 40px;
 }
 
 .features {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 25px;
-  max-width: 1100px;
-  margin: auto;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 25px;
 }
 
 .feature-box {
   background: white;
   padding: 25px;
+  width: 250px;
   border-radius: 15px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
   transition: 0.3s;
 }
 
@@ -110,45 +181,75 @@
   transform: translateY(-8px);
 }
 
+/* TESTIMONIALS */
+.testimonials {
+  padding: 80px 20px;
+  background: #f1f5f9;
+  text-align: center;
+}
+
+.testimonial-grid {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.testimonial-card {
+  background: white;
+  padding: 25px;
+  width: 260px;
+  border-radius: 15px;
+
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  transition: 0.3s;
+}
+
+.testimonial-card:hover {
+  transform: scale(1.05);
+}
+
 /* PROMO */
 .promo {
   padding: 80px 20px;
   display: flex;
   justify-content: center;
-  background: linear-gradient(to right, #2563eb, #1d4ed8);
 }
 
 .promo-card {
-  background: white;
+  background: linear-gradient(to right, #facc15, #f97316);
   padding: 40px;
   border-radius: 20px;
   text-align: center;
-  max-width: 400px;
-}
-
-.promo-card .discount {
-  font-size: 40px;
-  font-weight: bold;
-  color: #f97316;
-}
-
-.promo-card button {
-  margin-top: 20px;
-  padding: 10px 20px;
-  border: none;
-  background: #2563eb;
   color: white;
-  border-radius: 10px;
-  cursor: pointer;
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.discount {
+  font-size: 40px;
+  font-weight: 800;
+}
+
+/* ANIMATION */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* RESPONSIVE */
 @media (max-width: 900px) {
-  .features {
-    grid-template-columns: 1fr;
-  }
-
-  .hero-content h1 {
-    font-size: 32px;
+  .courses,
+  .features,
+  .testimonial-grid,
+  .achievements {
+    flex-direction: column;
+    align-items: center;
   }
 }

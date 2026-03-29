@@ -8,9 +8,12 @@ export default function About() {
       <section className="about-hero">
         <div className="about-overlay"></div>
         <div className="about-hero-content">
-          <h1>About Sharp Class Plus</h1>
+          <h1>
+            About <span>Sharp Class Plus</span>
+          </h1>
           <p>
-            Empowering students with skills, knowledge, and confidence to succeed.
+            Shaping future professionals through quality education,
+            practical skills, and expert guidance.
           </p>
         </div>
       </section>
@@ -23,12 +26,13 @@ export default function About() {
           <div className="about-text">
             <h2>Who We Are</h2>
             <p>
-              Sharp Class Plus is a leading institute delivering high-quality
-              training for engineering, IT, and public service exams.
+              <strong>Sharp Class Plus</strong> is a premier institute dedicated
+              to preparing students for engineering, IT, and public service careers.
             </p>
             <p>
-              We focus on practical learning, real-world applications, and
-              student success through modern teaching methods.
+              Our approach combines <strong>conceptual learning</strong> with
+              <strong> real-world application</strong>, ensuring students not only
+              pass exams but excel in their professional journey.
             </p>
           </div>
 
@@ -49,7 +53,7 @@ export default function About() {
 
           <div className="stat">
             <h3>50+</h3>
-            <p>Expert Teachers</p>
+            <p>Expert Trainers</p>
           </div>
 
           <div className="stat">
@@ -62,18 +66,18 @@ export default function About() {
         <div className="about-features">
 
           <div className="feature-box">
-            <h3>Expert Teachers</h3>
-            <p>Industry professionals with real experience.</p>
+            <h3>Expert Faculty</h3>
+            <p>Learn from experienced mentors and industry experts.</p>
           </div>
 
           <div className="feature-box">
             <h3>Practical Learning</h3>
-            <p>Hands-on training with real-world examples.</p>
+            <p>Hands-on training with real-world projects & case studies.</p>
           </div>
 
           <div className="feature-box">
-            <h3>Career Support</h3>
-            <p>Guidance from learning to job placement.</p>
+            <h3>Career Guidance</h3>
+            <p>Complete support from learning to job placement.</p>
           </div>
 
         </div>
@@ -84,19 +88,61 @@ export default function About() {
           <div className="mission-box">
             <h2>Our Mission</h2>
             <p>
-              To provide quality education that empowers students with knowledge,
-              skills, and confidence to succeed in their careers.
+              To empower students with high-quality education, practical skills,
+              and the confidence needed to succeed in competitive environments.
             </p>
           </div>
 
           <div className="mission-box">
             <h2>Our Vision</h2>
             <p>
-              To become a leading institute recognized for excellence in
-              education and student success.
+              To become a nationally recognized institute known for excellence,
+              innovation, and student success.
             </p>
           </div>
 
+        </div>
+
+        {/* 🔥 PRINCIPAL MESSAGE (NEW) */}
+        <div className="principal">
+          <h2>Message from the Principal</h2>
+          <p>
+            “At Sharp Class Plus, we believe education is not just about passing exams,
+            but about building a strong foundation for life. Our goal is to guide every
+            student toward success with dedication, discipline, and innovation.”
+          </p>
+          <h4>— Principal, Sharp Class Plus</h4>
+        </div>
+
+        {/* 🔥 ACHIEVEMENTS (NEW) */}
+        <div className="achievements">
+          <h2>Our Achievements</h2>
+
+          <div className="achieve-grid">
+            <div className="achieve-card">
+              <h3>Top Results</h3>
+              <p>Consistently high rankings in competitive exams.</p>
+            </div>
+
+            <div className="achieve-card">
+              <h3>Trusted Institute</h3>
+              <p>Recognized by hundreds of successful students.</p>
+            </div>
+
+            <div className="achieve-card">
+              <h3>Modern Learning</h3>
+              <p>Advanced teaching methods & digital resources.</p>
+            </div>
+          </div>
+        </div>
+
+        {/* 🔥 CTA */}
+        <div className="about-cta">
+          <h2>Join Us & Build Your Future 🚀</h2>
+          <p>
+            Start your journey with Sharp Class Plus and achieve your career goals.
+          </p>
+          <button>Enroll Now</button>
         </div>
 
       </div>

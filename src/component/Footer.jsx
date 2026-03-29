@@ -7,6 +7,7 @@ import {
   FaMapMarkerAlt,
 } from "react-icons/fa";
 import "../css/Footer.css";
+import logo from "../assets/logo.jpg"; // ✅ import logo
 
 export default function Footer() {
   return (
@@ -15,7 +16,10 @@ export default function Footer() {
 
         {/* BRAND */}
         <div className="footer-section">
-          <h2 className="footer-title">Sharp Class Plus</h2>
+          <div className="footer-logo">
+            <img src={logo} alt="Sharp Class Plus Logo" />
+            <h2>Sharp Class Plus</h2>
+          </div>
           <p>
             Empowering students with quality education, practical learning,
             and career-focused courses.
@@ -34,15 +38,15 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* COURSES */}
+        {/* COURSES (UPDATED ✅) */}
         <div className="footer-section">
           <h3 className="footer-heading">Courses</h3>
           <ul>
-            <li>Web Development</li>
-            <li>Graphic Design</li>
-            <li>Computer Basics</li>
-            <li>Accounting</li>
-            <li>Programming</li>
+            <li>Engineer Preparation</li>
+            <li>Sub Engineer Course</li>
+            <li>Assistant Sub Engineer</li>
+            <li>Weekly & Monthly Test</li>
+            <li>crash courses</li>
           </ul>
         </div>
 

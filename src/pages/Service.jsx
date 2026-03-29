@@ -11,31 +11,31 @@ const services = [
   {
     title: "Engineer Preparation",
     description:
-      "Complete preparation for engineering-level competitive exams.",
+      "Comprehensive coaching for engineering-level competitive exams with expert guidance.",
     icon: <FaUserGraduate />,
   },
   {
     title: "Sub-Engineer Courses",
     description:
-      "Focused training for Sub-Engineer entrance and exams.",
+      "Specialized training programs designed for Sub-Engineer entrance success.",
     icon: <FaTools />,
   },
   {
     title: "Assistant Sub-Engineer",
     description:
-      "Structured courses for Assistant Sub-Engineer roles.",
+      "Structured courses to help you excel in Assistant Sub-Engineer roles.",
     icon: <FaUserGraduate />,
   },
   {
     title: "Weekly & Monthly Tests",
     description:
-      "Regular assessments to track your performance and progress.",
+      "Performance tracking through regular mock tests and evaluations.",
     icon: <FaClipboardCheck />,
   },
   {
     title: "Crash Courses",
     description:
-      "Short-term intensive courses for quick revision and success.",
+      "Intensive short-term programs for quick revision and exam readiness.",
     icon: <FaBolt />,
   },
 ];
@@ -48,9 +48,12 @@ export default function Services() {
       <section className="services-hero">
         <div className="overlay"></div>
         <div className="services-hero-content">
-          <h1>Our Professional Services</h1>
+          <h1>
+            Upgrade Your Skills with <span>Professional Training</span>
+          </h1>
           <p>
-            We provide industry-focused training programs designed to build your career.
+            We deliver high-quality, career-focused education to help you
+            succeed in competitive exams and real-world careers.
           </p>
         </div>
       </section>
@@ -70,54 +73,90 @@ export default function Services() {
 
               <p>{service.description}</p>
 
-              <button className="service-btn">Learn More</button>
+              <button className="service-btn">
+                Explore Course →
+              </button>
             </div>
           ))}
         </div>
 
         {/* 🔥 PROCESS SECTION */}
         <div className="process">
-          <h2>Our Learning Process</h2>
+          <h2>
+            Your Journey to <span>Success</span>
+          </h2>
 
           <div className="process-steps">
             <div className="step">
               <FaCheckCircle />
-              <p>Enroll in your desired course</p>
+              <h4>Enroll</h4>
+              <p>Select your preferred course</p>
             </div>
 
             <div className="step">
               <FaCheckCircle />
-              <p>Attend expert-led classes</p>
+              <h4>Learn</h4>
+              <p>Attend expert-led interactive classes</p>
             </div>
 
             <div className="step">
               <FaCheckCircle />
-              <p>Practice with tests & assignments</p>
+              <h4>Practice</h4>
+              <p>Improve through tests & assignments</p>
             </div>
 
             <div className="step">
               <FaCheckCircle />
-              <p>Achieve your career goals</p>
+              <h4>Achieve</h4>
+              <p>Crack exams and build your career</p>
             </div>
           </div>
         </div>
 
         {/* 🔥 WHY CHOOSE US */}
         <div className="why-us">
-          <h2>Why Choose Us?</h2>
+          <h2>
+            Why Students <span>Choose Us</span>
+          </h2>
 
           <ul>
-            <li>✔ Experienced & professional instructors</li>
-            <li>✔ Practical and real-world training</li>
-            <li>✔ Regular tests and performance tracking</li>
-            <li>✔ Career guidance and support</li>
+            <li>Expert instructors with real industry experience</li>
+            <li>Practical, hands-on training approach</li>
+            <li>Regular tests & detailed performance analysis</li>
+            <li>Personal mentorship and career guidance</li>
+            <li>Proven success record of students</li>
           </ul>
+        </div>
+
+        {/* 🔥 EXTRA SECTION (NEW - TRUST BUILDING) */}
+        <div className="services-extra">
+          <h2>What Makes Us Different?</h2>
+
+          <div className="extra-grid">
+            <div className="extra-card">
+              <h3>500+ Students</h3>
+              <p>Successfully trained and placed</p>
+            </div>
+
+            <div className="extra-card">
+              <h3>10+ Expert Trainers</h3>
+              <p>Industry professionals & mentors</p>
+            </div>
+
+            <div className="extra-card">
+              <h3>95% Success Rate</h3>
+              <p>High performance in competitive exams</p>
+            </div>
+          </div>
         </div>
 
         {/* 🔥 CTA */}
         <div className="services-cta">
-          <h2>Start Your Journey Today 🚀</h2>
-          <p>Join our courses and build a successful future.</p>
+          <h2>Start Your Career Journey Today 🚀</h2>
+          <p>
+            Join our professional courses and take the first step toward your
+            dream career.
+          </p>
           <button>Enroll Now</button>
         </div>
 

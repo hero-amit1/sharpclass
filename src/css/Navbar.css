@@ -148,6 +148,11 @@
   border-bottom: 1px solid #eee;
   transition: all 0.3s ease;
 }
+.logo img {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+}
 
 .mobile-link:last-child {
   border-bottom: none;
