@@ -1,0 +1,149 @@
+/* HERO */
+.services-hero {
+  height: 40vh;
+  background: url("https://images.unsplash.com/photo-1581090700227-4c4b6c2f3d8b") center/cover;
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.services-hero .overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+}
+
+.services-hero-content {
+  position: relative;
+  color: white;
+  text-align: center;
+}
+
+.services-hero-content h1 {
+  font-size: 36px;
+  font-weight: 800;
+}
+
+/* CONTAINER */
+.services-container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 60px 20px;
+}
+
+/* GRID */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+/* CARD */
+.service-card {
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
+  text-align: center;
+
+  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+  transition: 0.3s;
+}
+
+.service-card:hover {
+  transform: translateY(-10px);
+}
+
+/* ICON */
+.service-icon {
+  font-size: 30px;
+  color: #2563eb;
+  margin-bottom: 15px;
+}
+
+/* BUTTON */
+.service-btn {
+  margin-top: 15px;
+  padding: 8px 16px;
+  border: none;
+  background: #2563eb;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* PROCESS */
+.process {
+  margin-top: 80px;
+  text-align: center;
+}
+
+.process h2 {
+  margin-bottom: 30px;
+}
+
+.process-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.step {
+  background: #f9fafb;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.step svg {
+  color: #22c55e;
+  font-size: 24px;
+}
+
+/* WHY US */
+.why-us {
+  margin-top: 60px;
+}
+
+.why-us h2 {
+  margin-bottom: 15px;
+}
+
+.why-us ul {
+  list-style: none;
+  padding: 0;
+}
+
+.why-us li {
+  margin-bottom: 10px;
+  color: #374151;
+}
+
+/* CTA */
+.services-cta {
+  margin-top: 80px;
+  text-align: center;
+  padding: 40px;
+  background: linear-gradient(to right, #2563eb, #1d4ed8);
+  color: white;
+  border-radius: 15px;
+}
+
+.services-cta button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  border: none;
+  background: white;
+  color: #2563eb;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .services-grid,
+  .process-steps {
+    grid-template-columns: 1fr;
+  }
+}
