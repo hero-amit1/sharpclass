@@ -1,13 +1,14 @@
 import {
   FaFacebookF,
-  FaInstagram,
-  FaLinkedinIn,
+  FaYoutube,
+  FaWhatsapp,
   FaPhoneAlt,
   FaEnvelope,
   FaMapMarkerAlt,
 } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import "../css/Footer.css";
-import logo from "../assets/logo.jpg"; // ✅ import logo
+import logo from "../assets/logo.jpg";
 
 export default function Footer() {
   return (
@@ -30,15 +31,15 @@ export default function Footer() {
         <div className="footer-section">
           <h3 className="footer-heading">Quick Links</h3>
           <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/services">Services</a></li>
-            <li><a href="/gallery">Gallery</a></li>
-            <li><a href="/contact">Contact</a></li>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/about">About</Link></li>
+            <li><Link to="/services">Services</Link></li>
+            <li><Link to="/gallery">Gallery</Link></li>
+            <li><Link to="/contact">Contact</Link></li>
           </ul>
         </div>
 
-        {/* COURSES (UPDATED ✅) */}
+        {/* COURSES */}
         <div className="footer-section">
           <h3 className="footer-heading">Courses</h3>
           <ul>
@@ -46,7 +47,7 @@ export default function Footer() {
             <li>Sub Engineer Course</li>
             <li>Assistant Sub Engineer</li>
             <li>Weekly & Monthly Test</li>
-            <li>crash courses</li>
+            <li>Crash Courses</li>
           </ul>
         </div>
 
@@ -54,16 +55,39 @@ export default function Footer() {
         <div className="footer-section">
           <h3 className="footer-heading">Contact Us</h3>
 
-          <p><FaMapMarkerAlt /> Kathmandu, Nepal</p>
-          <p><FaPhoneAlt /> 9800000000</p>
-          <p><FaEnvelope /> info@sharpclass.com</p>
+          <p>
+            <FaMapMarkerAlt /> Kathmandu, Nepal
+          </p>
+
+          <p>
+            <FaPhoneAlt />
+            <a href="tel:+9779804044190"> +977 9804044190</a>
+          </p>
+
+          <p>
+            <FaEnvelope />
+            <a href="mailto:sharpclassplus@gmail.com">
+              {" "}sharpclassplus@gmail.com
+            </a>
+          </p>
 
           {/* SOCIAL ICONS */}
           <div className="social-icons">
-            <a href="#"><FaFacebookF /></a>
-            <a href="#"><FaInstagram /></a>
-            <a href="#"><FaLinkedinIn /></a>
+            <a href="https://facebook.com/yourpage" target="_blank" rel="noreferrer">
+              <FaFacebookF />
+            </a>
+
+            <a href="https://youtube.com/yourchannel" target="_blank" rel="noreferrer">
+              <FaYoutube />
+            </a>
+
+            <a href="https://wa.me/9779804044190" target="_blank" rel="noreferrer">
+              <FaWhatsapp />
+            </a>
           </div>
+
+         
+
         </div>
 
       </div>

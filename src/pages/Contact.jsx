@@ -3,8 +3,8 @@ import {
   FaEnvelope,
   FaMapMarkerAlt,
   FaFacebookF,
-  FaInstagram,
-  FaLinkedinIn,
+  FaYoutube,
+  FaWhatsapp,
 } from "react-icons/fa";
 import "../css/Contact.css";
 
@@ -38,7 +38,11 @@ export default function Contact() {
             <FaPhoneAlt className="icon" />
             <div>
               <h3>Phone</h3>
-              <p>9800000000</p>
+              <p>
+                <a href="tel:+9779804044190">
+                  +977 9804044190
+                </a>
+              </p>
             </div>
           </div>
 
@@ -46,15 +50,27 @@ export default function Contact() {
             <FaEnvelope className="icon" />
             <div>
               <h3>Email</h3>
-              <p>info@sharpclass.com</p>
+              <p>
+                <a href="mailto:sharpclassplus@gmail.com">
+                  sharpclassplus@gmail.com
+                </a>
+              </p>
             </div>
           </div>
 
           {/* 🔥 SOCIAL */}
           <div className="social-icons">
-            <FaFacebookF />
-            <FaInstagram />
-            <FaLinkedinIn />
+            <a href="https://facebook.com/yourpage" target="_blank" rel="noreferrer">
+              <FaFacebookF />
+            </a>
+
+            <a href="https://youtube.com/yourchannel" target="_blank" rel="noreferrer">
+              <FaYoutube />
+            </a>
+
+            <a href="https://wa.me/9779804044190" target="_blank" rel="noreferrer">
+              <FaWhatsapp />
+            </a>
           </div>
 
         </div>
@@ -65,13 +81,13 @@ export default function Contact() {
           <h2>Send Us a Message</h2>
 
           <div className="form-row">
-            <input type="text" placeholder="Your Name" />
-            <input type="email" placeholder="Your Email" />
+            <input type="text" placeholder="Your Name *" required />
+            <input type="email" placeholder="Your Email *" required />
           </div>
 
           <input type="text" placeholder="Subject" />
 
-          <textarea rows="5" placeholder="Your Message"></textarea>
+          <textarea rows="5" placeholder="Your Message *" required></textarea>
 
           <button type="submit">
             Send Message
@@ -84,9 +100,12 @@ export default function Contact() {
       {/* 🔥 GOOGLE MAP */}
       <div className="map-section">
         <iframe
-          title="map"
-          src="https://www.google.com/maps?q=Kathmandu,Nepal&output=embed"
+          src="https://maps.google.com/maps?q=26.4612006,87.2623174&z=17&output=embed"
+          width="100%"
+          height="400"
+          style={{ border: 0 }}
           loading="lazy"
+          title="map"
         ></iframe>
       </div>
 

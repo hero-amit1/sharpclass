@@ -1,63 +1,101 @@
 import "../css/Home.css";
-import bgImage from "../assets/hero.jpg";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import { Navigation, Autoplay } from "swiper/modules";
 
 export default function Home() {
+  const slides = [
+    {
+      title: "Build Your Future with",
+      highlight: "Sharp Class Plus",
+      desc: "Professional training for Engineering & Technical Careers",
+      img: "https://images.unsplash.com/photo-1581090700227-4c4b6c2f3d8b"
+    },
+    {
+      title: "Crack Engineering Exams with",
+      highlight: "Expert Guidance",
+      desc: "Learn from experienced instructors",
+      img: "https://images.unsplash.com/photo-1523580494863-6f3031224c94"
+    },
+    {
+      title: "Upgrade Your Skills with",
+      highlight: "Practical Learning",
+      desc: "Hands-on projects & real-world training",
+      img: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d"
+    }
+  ];
+
   return (
     <div className="home">
 
-      {/* 🔥 HERO */}
-      <section
-        className="hero"
-        style={{ backgroundImage: `url(${bgImage})` }}
-      >
-        <div className="overlay"></div>
+      {/* 🔥 HERO SLIDER */}
+      <section className="hero-slider">
+        <Swiper
+          modules={[Navigation, Autoplay]}
+          navigation
+          autoplay={{ delay: 4000 }}
+          loop={true}
+        >
+          {slides.map((slide, index) => (
+            <SwiperSlide key={index}>
+              <div
+                className="hero-slide"
+                style={{ backgroundImage: `url(${slide.img})` }}
+              >
+                <div className="overlay"></div>
 
-        <div className="hero-content">
-          <h1>
-            Build Your Future with <span>Sharp Class Plus</span>
-          </h1>
+                <div className="hero-content">
+                  <h1>
+                    {slide.title} <span>{slide.highlight}</span>
+                  </h1>
+                  <p>{slide.desc}</p>
 
-          <p>
-            Professional training for Engineering, PSC, and Technical Careers.
-          </p>
-
-          <div className="hero-buttons">
-            <button className="primary-btn">Get Started</button>
-            <button className="secondary-btn">Explore Courses</button>
-          </div>
-        </div>
+                  <div className="hero-buttons">
+                    <button className="primary-btn">Get Started</button>
+                    <button className="secondary-btn">Explore Courses</button>
+                  </div>
+                </div>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </section>
 
-      {/* 🔥 COURSES SECTION */}
-      <section className="courses-section">
-        <h2>Our Popular Courses</h2>
+      /* 🔥 COURSES */
+<section className="courses-section">
+  <h2>Our Popular Courses</h2>
 
-        <div className="courses">
-          <div className="course-card">
-            <h3>Engineer Preparation</h3>
-            <p>Complete preparation for engineering exams.</p>
-          </div>
+  <div className="courses">
+    {[
+      {
+        title: "Engineer Preparation",
+        desc: "Complete preparation for engineering entrance exams."
+      },
+      {
+        title: "Sub-Engineer",
+        desc: "Focused training for technical competitive exams."
+      },
+      {
+        title: "Crash Courses",
+        desc: "Quick revision & intensive preparation programs."
+      }
+    ].map((course, i) => (
+      <div className="course-card" key={i}>
+        <div className="course-icon">🎓</div>
+        <h3>{course.title}</h3>
+        <p>{course.desc}</p>
+      </div>
+    ))}
+  </div>
+</section>
 
-          <div className="course-card">
-            <h3>Sub-Engineer</h3>
-            <p>Focused training for technical entrance exams.</p>
-          </div>
-
-          <div className="course-card">
-            <h3>Crash Courses</h3>
-            <p>Quick revision and intensive preparation.</p>
-          </div>
-        </div>
-      </section>
-
-      {/* 🔥 PRINCIPAL MESSAGE */}
+      {/* 🔥 PRINCIPAL */}
       <section className="principal-section">
         <div className="principal-content">
           <h2>Message from Principal</h2>
           <p>
-            "At Sharp Class Plus, our mission is to empower students with
-            knowledge, skills, and confidence. We focus on practical learning
-            and real-world success."
+            "We focus on practical learning, real-world skills, and student success."
           </p>
           <h4>- Principal</h4>
         </div>
@@ -65,20 +103,16 @@ export default function Home() {
 
       {/* 🔥 ACHIEVEMENTS */}
       <section className="achievements">
-        <div className="achieve-box">
-          <h2>500+</h2>
-          <p>Students Enrolled</p>
-        </div>
-
-        <div className="achieve-box">
-          <h2>95%</h2>
-          <p>Success Rate</p>
-        </div>
-
-        <div className="achieve-box">
-          <h2>50+</h2>
-          <p>Courses Available</p>
-        </div>
+        {[
+          { num: "500+", label: "Students" },
+          { num: "95%", label: "Success Rate" },
+          { num: "50+", label: "Courses" }
+        ].map((item, i) => (
+          <div className="achieve-box" key={i}>
+            <h2>{item.num}</h2>
+            <p>{item.label}</p>
+          </div>
+        ))}
       </section>
 
       {/* 🔥 FEATURES */}
@@ -86,48 +120,26 @@ export default function Home() {
         <h2>Why Choose Us</h2>
 
         <div className="features">
-          <div className="feature-box">
-            <h3>Expert Trainers</h3>
-            <p>Learn from industry professionals.</p>
-          </div>
-
-          <div className="feature-box">
-            <h3>Practical Learning</h3>
-            <p>Hands-on training with real projects.</p>
-          </div>
-
-          <div className="feature-box">
-            <h3>Career Support</h3>
-            <p>We help you achieve your career goals.</p>
-          </div>
+          {["Expert Trainers", "Practical Learning", "Career Support"].map((f, i) => (
+            <div className="feature-box" key={i}>
+              <h3>{f}</h3>
+              <p>Top-quality education experience.</p>
+            </div>
+          ))}
         </div>
       </section>
 
       {/* 🔥 TESTIMONIALS */}
       <section className="testimonials">
-        <h2>What Our Students Say</h2>
+        <h2>What Students Say</h2>
 
         <div className="testimonial-grid">
-          <div className="testimonial-card">
-            <p>
-              "Best institute! Helped me pass my engineering exam."
-            </p>
-            <h4>- Student A</h4>
-          </div>
-
-          <div className="testimonial-card">
-            <p>
-              "Great teachers and practical learning experience."
-            </p>
-            <h4>- Student B</h4>
-          </div>
-
-          <div className="testimonial-card">
-            <p>
-              "Highly recommended for PSC preparation."
-            </p>
-            <h4>- Student C</h4>
-          </div>
+          {[1, 2, 3].map((t) => (
+            <div className="testimonial-card" key={t}>
+              <p>"Amazing institute with real results!"</p>
+              <h4>- Student</h4>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -136,7 +148,6 @@ export default function Home() {
         <div className="promo-card">
           <h2>🎉 Limited Offer</h2>
           <p className="discount">25% OFF</p>
-          <p>On all courses this month</p>
           <button>Enroll Now</button>
         </div>
       </section>

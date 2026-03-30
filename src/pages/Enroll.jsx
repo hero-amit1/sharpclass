@@ -5,8 +5,11 @@ export default function Enroll() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    address: "",
     phone: "",
     course: "",
+    whatsapp: "",
+    mode: "",
     message: "",
   });
 
@@ -19,8 +22,8 @@ export default function Enroll() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert("Enrollment Submitted!");
     console.log(formData);
+    alert("✅ Enrollment Submitted!");
   };
 
   return (
@@ -41,43 +44,71 @@ export default function Enroll() {
         <form className="enroll-form" onSubmit={handleSubmit}>
           <h2>Registration Form</h2>
 
+          {/* FULL NAME */}
           <input
             type="text"
             name="name"
-            placeholder="Full Name"
+            placeholder="Full Name *"
             onChange={handleChange}
             required
           />
 
+          {/* EMAIL */}
           <input
             type="email"
             name="email"
-            placeholder="Email Address"
+            placeholder="Email Address *"
             onChange={handleChange}
             required
           />
 
+          {/* ADDRESS */}
+          <input
+            type="text"
+            name="address"
+            placeholder="Address"
+            onChange={handleChange}
+          />
+
+          {/* PHONE */}
           <input
             type="text"
             name="phone"
-            placeholder="Phone Number"
+            placeholder="Phone Number *"
             onChange={handleChange}
             required
           />
 
-          {/* COURSE SELECT */}
+          {/* WHATSAPP */}
+          <input
+            type="text"
+            name="whatsapp"
+            placeholder="WhatsApp Number"
+            onChange={handleChange}
+          />
+
+          {/* APPLIED FOR */}
           <select name="course" onChange={handleChange} required>
-            <option value="">Select Course</option>
-            <option>Engineer Preparation</option>
+            <option value="">Applied For *</option>
+            <option>Engineer (Civil)</option>
             <option>Sub-Engineer</option>
-            <option>Assistant Sub-Engineer</option>
-            <option>Crash Course</option>
+            <option>Asst. Sub-Engineer</option>
+            <option>Bridge Courses</option>
+            <option>Other</option>
           </select>
 
+          {/* CLASS MODE */}
+          <select name="mode" onChange={handleChange} required>
+            <option value="">Class Mode *</option>
+            <option>Online</option>
+            <option>Physical</option>
+          </select>
+
+          {/* MESSAGE */}
           <textarea
             name="message"
             rows="4"
-            placeholder="Additional Message (Optional)"
+            placeholder="Inquiry"
             onChange={handleChange}
           ></textarea>
 
@@ -86,14 +117,10 @@ export default function Enroll() {
 
         {/* 🔥 SIDE INFO */}
         <div className="enroll-info">
-          <h2>Why Join Us?</h2>
+          <h2>Contact Us</h2>
 
-          <ul>
-            <li>✔ Expert Trainers</li>
-            <li>✔ Practical Learning</li>
-            <li>✔ Regular Tests</li>
-            <li>✔ Career Support</li>
-          </ul>
+          <p><strong>📞 Call:</strong> +977 9804044190</p>
+          <p><strong>💬 WhatsApp:</strong> +977 9804044190</p>
 
           <div className="highlight">
             <h3>🎉 Limited Offer</h3>

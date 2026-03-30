@@ -2,41 +2,39 @@ import {
   FaUserGraduate,
   FaTools,
   FaClipboardCheck,
-  FaBolt,
   FaCheckCircle,
 } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import "../css/Service.css";
 
-const services = [
+const courses = [
   {
     title: "Engineer Preparation",
+    slug: "engineer",
     description:
-      "Comprehensive coaching for engineering-level competitive exams with expert guidance.",
+      "Complete coaching for engineering-level competitive exams with expert guidance.",
     icon: <FaUserGraduate />,
   },
   {
-    title: "Sub-Engineer Courses",
+    title: "Sub-Engineer Course",
+    slug: "sub-engineer",
     description:
-      "Specialized training programs designed for Sub-Engineer entrance success.",
+      "Specialized training designed for Sub-Engineer entrance success.",
     icon: <FaTools />,
   },
   {
     title: "Assistant Sub-Engineer",
+    slug: "assistant-sub-engineer",
     description:
       "Structured courses to help you excel in Assistant Sub-Engineer roles.",
     icon: <FaUserGraduate />,
   },
   {
-    title: "Weekly & Monthly Tests",
+    title: "NEC Preparation",
+    slug: "nec",
     description:
-      "Performance tracking through regular mock tests and evaluations.",
+      "Focused preparation for Nepal Engineering Council (NEC) licensing exams.",
     icon: <FaClipboardCheck />,
-  },
-  {
-    title: "Crash Courses",
-    description:
-      "Intensive short-term programs for quick revision and exam readiness.",
-    icon: <FaBolt />,
   },
 ];
 
@@ -60,22 +58,39 @@ export default function Services() {
 
       <div className="services-container">
 
-        {/* 🔥 SERVICES GRID */}
+        {/* 🔥 COURSES TITLE */}
+        <div className="section-title">
+          <h2>
+            Our <span>Courses</span>
+          </h2>
+          <p>
+            Choose from our most in-demand professional courses designed for success.
+          </p>
+        </div>
+
+        {/* 🔥 COURSES GRID */}
         <div className="services-grid">
-          {services.map((service, i) => (
+          {courses.map((course, i) => (
             <div key={i} className="service-card">
 
               <div className="service-icon">
-                {service.icon}
+                {course.icon}
               </div>
 
-              <h3>{service.title}</h3>
+              <h3>{course.title}</h3>
 
-              <p>{service.description}</p>
+              <p>{course.description}</p>
 
-              <button className="service-btn">
-                Explore Course →
-              </button>
+              {/* ✅ IMPORTANT: LINK WRAPS BUTTON */}
+              <Link
+                to={`/course/${course.slug}`}
+                style={{ textDecoration: "none" }}
+              >
+                <button className="service-btn">
+                  Explore Course →
+                </button>
+              </Link>
+
             </div>
           ))}
         </div>
@@ -126,28 +141,6 @@ export default function Services() {
             <li>Personal mentorship and career guidance</li>
             <li>Proven success record of students</li>
           </ul>
-        </div>
-
-        {/* 🔥 EXTRA SECTION (NEW - TRUST BUILDING) */}
-        <div className="services-extra">
-          <h2>What Makes Us Different?</h2>
-
-          <div className="extra-grid">
-            <div className="extra-card">
-              <h3>500+ Students</h3>
-              <p>Successfully trained and placed</p>
-            </div>
-
-            <div className="extra-card">
-              <h3>10+ Expert Trainers</h3>
-              <p>Industry professionals & mentors</p>
-            </div>
-
-            <div className="extra-card">
-              <h3>95% Success Rate</h3>
-              <p>High performance in competitive exams</p>
-            </div>
-          </div>
         </div>
 
         {/* 🔥 CTA */}
