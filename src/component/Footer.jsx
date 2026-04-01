@@ -9,14 +9,29 @@ import {
 import { Link } from "react-router-dom";
 import "../css/Footer.css";
 import logo from "../assets/logo.jpg";
+import { motion } from "framer-motion";
 
 export default function Footer() {
+
+  // 🔥 Animation
+  const fadeUp = {
+    hidden: { opacity: 0, y: 40 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+  };
+
   return (
     <footer className="footer">
-      <div className="footer-container">
+
+      <motion.div
+        className="footer-container"
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }}
+      >
 
         {/* BRAND */}
-        <div className="footer-section">
+        <motion.div className="footer-section" variants={fadeUp}>
           <div className="footer-logo">
             <img src={logo} alt="Sharp Class Plus Logo" />
             <h2>Sharp Class Plus</h2>
@@ -25,10 +40,10 @@ export default function Footer() {
             Empowering students with quality education, practical learning,
             and career-focused courses.
           </p>
-        </div>
+        </motion.div>
 
         {/* QUICK LINKS */}
-        <div className="footer-section">
+        <motion.div className="footer-section" variants={fadeUp}>
           <h3 className="footer-heading">Quick Links</h3>
           <ul>
             <li><Link to="/">Home</Link></li>
@@ -37,10 +52,10 @@ export default function Footer() {
             <li><Link to="/gallery">Gallery</Link></li>
             <li><Link to="/contact">Contact</Link></li>
           </ul>
-        </div>
+        </motion.div>
 
         {/* COURSES */}
-        <div className="footer-section">
+        <motion.div className="footer-section" variants={fadeUp}>
           <h3 className="footer-heading">Courses</h3>
           <ul>
             <li>Engineer Preparation</li>
@@ -49,10 +64,10 @@ export default function Footer() {
             <li>Weekly & Monthly Test</li>
             <li>Crash Courses</li>
           </ul>
-        </div>
+        </motion.div>
 
         {/* CONTACT */}
-        <div className="footer-section">
+        <motion.div className="footer-section" variants={fadeUp}>
           <h3 className="footer-heading">Contact Us</h3>
 
           <p>
@@ -71,31 +86,50 @@ export default function Footer() {
             </a>
           </p>
 
-          {/* SOCIAL ICONS */}
+          {/* 🔥 SOCIAL ICONS */}
           <div className="social-icons">
-            <a href="https://facebook.com/yourpage" target="_blank" rel="noreferrer">
+            <motion.a
+              href="https://facebook.com/yourpage"
+              target="_blank"
+              rel="noreferrer"
+              whileHover={{ scale: 1.2 }}
+            >
               <FaFacebookF />
-            </a>
+            </motion.a>
 
-            <a href="https://youtube.com/yourchannel" target="_blank" rel="noreferrer">
+            <motion.a
+              href="https://youtube.com/yourchannel"
+              target="_blank"
+              rel="noreferrer"
+              whileHover={{ scale: 1.2 }}
+            >
               <FaYoutube />
-            </a>
+            </motion.a>
 
-            <a href="https://wa.me/9779804044190" target="_blank" rel="noreferrer">
+            <motion.a
+              href="https://wa.me/9779804044190"
+              target="_blank"
+              rel="noreferrer"
+              whileHover={{ scale: 1.2 }}
+            >
               <FaWhatsapp />
-            </a>
+            </motion.a>
           </div>
 
-         
+        </motion.div>
 
-        </div>
+      </motion.div>
 
-      </div>
-
-      {/* BOTTOM */}
-      <div className="footer-bottom">
+      {/* 🔥 BOTTOM */}
+      <motion.div
+        className="footer-bottom"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+      >
         © 2026 Sharp Class Plus. All rights reserved.
-      </div>
+      </motion.div>
+
     </footer>
   );
 }

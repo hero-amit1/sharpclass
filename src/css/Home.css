@@ -1,8 +1,12 @@
-/* GLOBAL */
+/* ================= GLOBAL ================= */
 .home {
   font-family: "Poppins", sans-serif;
   background: #f8fafc;
   overflow-x: hidden;
+}
+
+* {
+  scroll-behavior: smooth;
 }
 
 /* ================= HERO SLIDER ================= */
@@ -17,7 +21,7 @@
   position: relative;
 }
 
-/* 🔥 OVERLAY (gradient blue + dark) */
+/* OVERLAY */
 .overlay {
   position: absolute;
   inset: 0;
@@ -39,7 +43,7 @@
   max-width: 750px;
   margin: auto;
   padding: 20px;
-  animation: fadeUp 1s ease;
+  animation: fadeUp 1s ease-out;
 }
 
 .hero-content h1 {
@@ -115,7 +119,7 @@
   margin-top: 40px;
 }
 
-/* 🔥 GLASS CARD */
+/* GLASS CARD */
 .course-card {
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(12px);
@@ -160,24 +164,58 @@
   font-style: italic;
 }
 
-/* ================= ACHIEVEMENTS ================= */
+/* ================= ACHIEVEMENTS (FINAL PRO) ================= */
 .achievements {
-  display: flex;
-  justify-content: space-around;
-  padding: 70px 20px;
-  background: #0f172a;
-  color: white;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-
-.achieve-box {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+  padding: 80px 20px;
+  background: linear-gradient(to bottom, #f8fafc, #eef2ff);
   text-align: center;
 }
 
+.achieve-box {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  padding: 35px 20px;
+  border-radius: 18px;
+  box-shadow: 0 12px 35px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.achieve-box:hover {
+  transform: translateY(-10px) scale(1.04);
+}
+
 .achieve-box h2 {
-  font-size: 40px;
-  color: #60a5fa;
+  font-size: 2.8rem;
+  font-weight: 800;
+  background: linear-gradient(to right, #6366f1, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 10px;
+}
+
+.achieve-box p {
+  font-size: 1rem;
+  color: #555;
+  font-weight: 500;
+}
+
+.achieve-box::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  padding: 2px;
+  background: linear-gradient(45deg, #6366f1, #06b6d4);
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
 }
 
 /* ================= FEATURES ================= */
@@ -276,8 +314,7 @@
 
   .courses,
   .features,
-  .testimonial-grid,
-  .achievements {
+  .testimonial-grid {
     flex-direction: column;
     align-items: center;
   }

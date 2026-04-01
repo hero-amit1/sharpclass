@@ -71,10 +71,45 @@
   cursor: pointer;
 }
 
+.upload-label {
+  margin-top: 10px;
+  font-weight: 600;
+  display: block;
+}
+
+.preview-img {
+  width: 120px;
+  margin-top: 10px;
+  border-radius: 8px;
+}
 .enroll-form button:hover {
   background: #1d4ed8;
 }
 
+.payment-section {
+  margin-top: 20px;
+}
+
+.payment-box {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: #f9fafb;
+  padding: 12px;
+  border-radius: 10px;
+}
+
+.payment-box img {
+  width: 100px;
+  height: auto;
+  border-radius: 8px;
+}
+
+.payment-text p {
+  margin: 4px 0;
+  font-size: 14px;
+  color: #374151;
+}
 /* INFO */
 .enroll-info {
   padding: 20px;

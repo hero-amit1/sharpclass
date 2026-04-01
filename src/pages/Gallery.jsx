@@ -1,25 +1,17 @@
 import { useState } from "react";
 import "../css/Gallery.css";
 
-const categories = ["All", "Classes", "Events", "Students"];
-
 const images = [
-  { id: 1, src: "https://picsum.photos/400/300?1", category: "Classes" },
-  { id: 2, src: "https://picsum.photos/400/300?2", category: "Events" },
-  { id: 3, src: "https://picsum.photos/400/300?3", category: "Students" },
-  { id: 4, src: "https://picsum.photos/400/300?4", category: "Classes" },
-  { id: 5, src: "https://picsum.photos/400/300?5", category: "Events" },
-  { id: 6, src: "https://picsum.photos/400/300?6", category: "Students" },
+  { id: 1, src: "https://picsum.photos/400/300?1" },
+  { id: 2, src: "https://picsum.photos/400/300?2" },
+  { id: 3, src: "https://picsum.photos/400/300?3" },
+  { id: 4, src: "https://picsum.photos/400/300?4" },
+  { id: 5, src: "https://picsum.photos/400/300?5" },
+  { id: 6, src: "https://picsum.photos/400/300?6" },
 ];
 
 export default function Gallery() {
   const [selected, setSelected] = useState(null);
-  const [filter, setFilter] = useState("All");
-
-  const filteredImages =
-    filter === "All"
-      ? images
-      : images.filter((img) => img.category === filter);
 
   return (
     <div className="gallery">
@@ -35,22 +27,9 @@ export default function Gallery() {
 
       <div className="gallery-container">
 
-        {/* 🔥 FILTER BUTTONS */}
-        <div className="gallery-filters">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              className={filter === cat ? "active" : ""}
-              onClick={() => setFilter(cat)}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
-
         {/* 🔥 GRID */}
         <div className="gallery-grid">
-          {filteredImages.map((img) => (
+          {images.map((img) => (
             <div
               key={img.id}
               className="gallery-item"

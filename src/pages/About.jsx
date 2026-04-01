@@ -1,13 +1,38 @@
 import "../css/About.css";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 export default function About() {
+
+  // 🔥 Animation Variants
+  const fadeUp = {
+    hidden: { opacity: 0, y: 60 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.8 } }
+  };
+
+  const fadeLeft = {
+    hidden: { opacity: 0, x: -80 },
+    show: { opacity: 1, x: 0, transition: { duration: 0.8 } }
+  };
+
+  const fadeRight = {
+    hidden: { opacity: 0, x: 80 },
+    show: { opacity: 1, x: 0, transition: { duration: 0.8 } }
+  };
+
   return (
     <div className="about">
 
-      {/* 🔥 HERO SECTION */}
+      {/* 🔥 HERO */}
       <section className="about-hero">
         <div className="about-overlay"></div>
-        <div className="about-hero-content">
+
+        <motion.div
+          className="about-hero-content"
+          initial="hidden"
+          animate="show"
+          variants={fadeUp}
+        >
           <h1>
             About <span>Sharp Class Plus</span>
           </h1>
@@ -15,7 +40,7 @@ export default function About() {
             Shaping future professionals through quality education,
             practical skills, and expert guidance.
           </p>
-        </div>
+        </motion.div>
       </section>
 
       <div className="about-container">
@@ -23,7 +48,13 @@ export default function About() {
         {/* 🔥 WHO WE ARE */}
         <div className="about-content">
 
-          <div className="about-text">
+          <motion.div
+            className="about-text"
+            variants={fadeLeft}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+          >
             <h2>Who We Are</h2>
             <p>
               <strong>Sharp Class Plus</strong> is a premier institute dedicated
@@ -34,77 +65,117 @@ export default function About() {
               <strong> real-world application</strong>, ensuring students not only
               pass exams but excel in their professional journey.
             </p>
-          </div>
+          </motion.div>
 
-          <div className="about-image">
+          <motion.div
+            className="about-image"
+            variants={fadeRight}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+          >
             <img
               src="https://images.unsplash.com/photo-1523240795612-9a054b0db644"
               alt="students"
             />
-          </div>
+          </motion.div>
+
         </div>
 
-        {/* 🔥 STATS SECTION */}
+        {/* 🔥 STATS */}
         <div className="about-stats">
-          <div className="stat">
-            <h3>500+</h3>
-            <p>Students Trained</p>
-          </div>
-
-          <div className="stat">
-            <h3>50+</h3>
-            <p>Expert Trainers</p>
-          </div>
-
-          <div className="stat">
-            <h3>95%</h3>
-            <p>Success Rate</p>
-          </div>
+          {[
+            { num: "500+", label: "Students Trained" },
+            { num: "50+", label: "Expert Trainers" },
+            { num: "95%", label: "Success Rate" }
+          ].map((stat, i) => (
+            <motion.div
+              className="stat"
+              key={i}
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.2 }}
+            >
+              <h3>{stat.num}</h3>
+              <p>{stat.label}</p>
+            </motion.div>
+          ))}
         </div>
 
         {/* 🔥 FEATURES */}
         <div className="about-features">
-
-          <div className="feature-box">
-            <h3>Expert Faculty</h3>
-            <p>Learn from experienced mentors and industry experts.</p>
-          </div>
-
-          <div className="feature-box">
-            <h3>Practical Learning</h3>
-            <p>Hands-on training with real-world projects & case studies.</p>
-          </div>
-
-          <div className="feature-box">
-            <h3>Career Guidance</h3>
-            <p>Complete support from learning to job placement.</p>
-          </div>
-
+          {[
+            {
+              title: "Expert Faculty",
+              desc: "Learn from experienced mentors and industry experts."
+            },
+            {
+              title: "Practical Learning",
+              desc: "Hands-on training with real-world projects & case studies."
+            },
+            {
+              title: "Career Guidance",
+              desc: "Complete support from learning to job placement."
+            }
+          ].map((f, i) => (
+            <motion.div
+              className="feature-box"
+              key={i}
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.2 }}
+            >
+              <h3>{f.title}</h3>
+              <p>{f.desc}</p>
+            </motion.div>
+          ))}
         </div>
 
         {/* 🔥 MISSION / VISION */}
         <div className="mission">
 
-          <div className="mission-box">
+          <motion.div
+            className="mission-box"
+            variants={fadeLeft}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+          >
             <h2>Our Mission</h2>
             <p>
               To empower students with high-quality education, practical skills,
               and the confidence needed to succeed in competitive environments.
             </p>
-          </div>
+          </motion.div>
 
-          <div className="mission-box">
+          <motion.div
+            className="mission-box"
+            variants={fadeRight}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+          >
             <h2>Our Vision</h2>
             <p>
               To become a nationally recognized institute known for excellence,
               innovation, and student success.
             </p>
-          </div>
+          </motion.div>
 
         </div>
 
-        {/* 🔥 PRINCIPAL MESSAGE (NEW) */}
-        <div className="principal">
+        {/* 🔥 PRINCIPAL */}
+        <motion.div
+          className="principal"
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+        >
           <h2>Message from the Principal</h2>
           <p>
             “At Sharp Class Plus, we believe education is not just about passing exams,
@@ -112,38 +183,72 @@ export default function About() {
             student toward success with dedication, discipline, and innovation.”
           </p>
           <h4>— Principal, Sharp Class Plus</h4>
-        </div>
+        </motion.div>
 
-        {/* 🔥 ACHIEVEMENTS (NEW) */}
+        {/* 🔥 ACHIEVEMENTS */}
         <div className="achievements">
-          <h2>Our Achievements</h2>
+          <motion.h2
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+          >
+            Our Achievements
+          </motion.h2>
 
           <div className="achieve-grid">
-            <div className="achieve-card">
-              <h3>Top Results</h3>
-              <p>Consistently high rankings in competitive exams.</p>
-            </div>
-
-            <div className="achieve-card">
-              <h3>Trusted Institute</h3>
-              <p>Recognized by hundreds of successful students.</p>
-            </div>
-
-            <div className="achieve-card">
-              <h3>Modern Learning</h3>
-              <p>Advanced teaching methods & digital resources.</p>
-            </div>
+            {[
+              {
+                title: "Top Results",
+                desc: "Consistently high rankings in competitive exams."
+              },
+              {
+                title: "Trusted Institute",
+                desc: "Recognized by hundreds of successful students."
+              },
+              {
+                title: "Modern Learning",
+                desc: "Advanced teaching methods & digital resources."
+              }
+            ].map((a, i) => (
+              <motion.div
+                className="achieve-card"
+                key={i}
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.2 }}
+              >
+                <h3>{a.title}</h3>
+                <p>{a.desc}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
 
         {/* 🔥 CTA */}
-        <div className="about-cta">
+        <motion.div
+          className="about-cta"
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+        >
           <h2>Join Us & Build Your Future 🚀</h2>
           <p>
             Start your journey with Sharp Class Plus and achieve your career goals.
           </p>
-          <button>Enroll Now</button>
-        </div>
+
+          <Link to="/enroll">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Enroll Now
+            </motion.button>
+          </Link>
+        </motion.div>
 
       </div>
     </div>

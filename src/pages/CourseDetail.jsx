@@ -1,6 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import courseData from "./CourseData.js";
 import "../css/Course.css";
+import { motion } from "framer-motion";
 
 export default function CourseDetail() {
   const { slug } = useParams();
@@ -12,6 +13,22 @@ export default function CourseDetail() {
     return <h2 style={{ padding: "100px" }}>Course Not Found</h2>;
   }
 
+  // 🔥 Animations
+  const fadeUp = {
+    hidden: { opacity: 0, y: 60 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.8 } }
+  };
+
+  const fadeLeft = {
+    hidden: { opacity: 0, x: -80 },
+    show: { opacity: 1, x: 0, transition: { duration: 0.8 } }
+  };
+
+  const fadeRight = {
+    hidden: { opacity: 0, x: 80 },
+    show: { opacity: 1, x: 0, transition: { duration: 0.8 } }
+  };
+
   return (
     <div className="course-detail">
 
@@ -21,18 +38,34 @@ export default function CourseDetail() {
         style={{ backgroundImage: `url(${course.image})` }}
       >
         <div className="overlay"></div>
-        <h1>{course.title}</h1>
-        <p>{course.description}</p>
+
+        <motion.div
+          initial="hidden"
+          animate="show"
+          variants={fadeUp}
+        >
+          <h1>{course.title}</h1>
+          <p>{course.description}</p>
+        </motion.div>
       </div>
 
       {/* CONTENT */}
       <div className="course-content">
 
         {/* LEFT */}
-        <div className="course-left">
+        <motion.div
+          className="course-left"
+          variants={fadeLeft}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+        >
 
-          {/* 🎥 YOUTUBE VIDEO PREVIEW (FIXED) */}
-          <div className="course-video">
+          {/* 🎥 VIDEO */}
+          <motion.div
+            className="course-video"
+            variants={fadeUp}
+          >
             <iframe
               src={course.video}
               title="Course Preview"
@@ -40,45 +73,81 @@ export default function CourseDetail() {
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             ></iframe>
-          </div>
+          </motion.div>
 
           {/* OVERVIEW */}
-          <div className="course-info">
+          <motion.div
+            className="course-info"
+            variants={fadeUp}
+          >
             <h3>Course Overview</h3>
             <p>
               Learn with structured lessons, weekly & monthly mock tests,
               including both objective and subjective practice. This course is
               designed to help you crack competitive exams with confidence.
             </p>
-          </div>
+          </motion.div>
 
           {/* SYLLABUS */}
-          <div className="course-syllabus">
+          <motion.div
+            className="course-syllabus"
+            variants={fadeUp}
+          >
             <h3>Course Syllabus</h3>
             <ul>
               {course.syllabus.map((item, i) => (
-                <li key={i}>{item}</li>
+                <motion.li
+                  key={i}
+                  variants={fadeRight}
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                >
+                  {item}
+                </motion.li>
               ))}
             </ul>
-          </div>
+          </motion.div>
 
-          {/* EXTRA CONTENT (NEW 🔥) */}
-          <div className="course-features">
+          {/* FEATURES */}
+          <motion.div
+            className="course-features"
+            variants={fadeUp}
+          >
             <h3>What You’ll Get</h3>
             <ul>
-              <li>✔ Weekly Mock Tests (Objective + Subjective)</li>
-              <li>✔ Monthly Full-Length Exams</li>
-              <li>✔ Doubt Solving Sessions</li>
-              <li>✔ Study Materials & Notes</li>
-              <li>✔ Real Exam Practice Environment</li>
+              {[
+                "✔ Weekly Mock Tests (Objective + Subjective)",
+                "✔ Monthly Full-Length Exams",
+                "✔ Doubt Solving Sessions",
+                "✔ Study Materials & Notes",
+                "✔ Real Exam Practice Environment"
+              ].map((item, i) => (
+                <motion.li
+                  key={i}
+                  variants={fadeRight}
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                >
+                  {item}
+                </motion.li>
+              ))}
             </ul>
-          </div>
+          </motion.div>
 
-        </div>
+        </motion.div>
 
-        {/* RIGHT - PAYMENT CARD */}
-        <div className="course-sidebar">
-
+        {/* RIGHT SIDEBAR */}
+        <motion.div
+          className="course-sidebar"
+          variants={fadeRight}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+        >
           <h3>{course.title}</h3>
 
           <p className="course-price">{course.price}</p>
@@ -86,11 +155,14 @@ export default function CourseDetail() {
             Duration: {course.duration}
           </p>
 
-          {/* 💳 PAYMENT UI */}
-          {/* <button className="buy-btn">💳 Buy Now</button> */}
-
           <Link to="/enroll">
-            <button className="enroll-btn">Enroll Now</button>
+            <motion.button
+              className="enroll-btn"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Enroll Now
+            </motion.button>
           </Link>
 
           <div className="course-extra">
@@ -100,30 +172,47 @@ export default function CourseDetail() {
             <p>✔ Weekly + Monthly Tests</p>
             <p>✔ Expert Mentorship</p>
           </div>
-        </div>
+        </motion.div>
 
       </div>
 
       {/* RELATED */}
       <div className="related-courses">
-        <h2>Other Courses</h2>
+
+        <motion.h2
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+        >
+          Other Courses
+        </motion.h2>
 
         <div className="related-grid">
           {otherCourses.map((item, i) => (
-            <div key={i} className="related-card">
-
+            <motion.div
+              key={i}
+              className="related-card"
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.2 }}
+            >
               <img src={item.image} alt={item.title} />
 
               <h4>{item.title}</h4>
               <p>{item.description}</p>
 
               <Link to={`/course/${item.slug}`}>
-                <button className="related-btn">
+                <motion.button
+                  className="related-btn"
+                  whileHover={{ scale: 1.05 }}
+                >
                   View Course →
-                </button>
+                </motion.button>
               </Link>
-
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

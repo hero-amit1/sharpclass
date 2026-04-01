@@ -105,7 +105,7 @@ export default function Navbar() {
 
             {/* 🚀 CTA IN MIDDLE */}
             <Link to="/enroll" className="mobile-btn">
-              🚀 Enroll Now
+               Enroll Now
             </Link>
 
             {navLinks.slice(2).map((link) => (
