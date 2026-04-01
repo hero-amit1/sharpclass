@@ -8,23 +8,64 @@ import {
 } from "react-icons/fa";
 import "../css/Contact.css";
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 export default function Contact() {
 
-  // 🔥 Animation Variants
+  // 🔥 FORM STATE (ready for backend / email integration)
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData); // 👉 replace with API later
+    alert("Message sent successfully!");
+    setFormData({ name: "", email: "", subject: "", message: "" });
+  };
+
+  // 🔥 STAGGER ANIMATION
+  const container = {
+    hidden: {},
+    show: {
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
   const fadeUp = {
     hidden: { opacity: 0, y: 60 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.8 } }
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.7, ease: "easeOut" },
+    },
   };
 
   const fadeLeft = {
     hidden: { opacity: 0, x: -80 },
-    show: { opacity: 1, x: 0, transition: { duration: 0.8 } }
+    show: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.7 },
+    },
   };
 
   const fadeRight = {
     hidden: { opacity: 0, x: 80 },
-    show: { opacity: 1, x: 0, transition: { duration: 0.8 } }
+    show: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.7 },
+    },
   };
 
   return (
@@ -41,26 +82,26 @@ export default function Contact() {
           variants={fadeUp}
         >
           <h1>Contact Us</h1>
-          <p>We are here to help you. Get in touch with us.</p>
+          <p>We are here to help you. Get in touch with us anytime.</p>
         </motion.div>
       </div>
 
-      <div className="contact-container">
+      <motion.div
+        className="contact-container"
+        variants={container}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }}
+      >
 
         {/* 🔥 CONTACT INFO */}
-        <motion.div
-          className="contact-info"
-          variants={fadeLeft}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-        >
+        <motion.div className="contact-info" variants={fadeLeft}>
 
           {[
             {
               icon: <FaMapMarkerAlt />,
               title: "Address",
-              value: "Kathmandu, Nepal"
+              value: "Biratnagar-06, Morang, Nepal"
             },
             {
               icon: <FaPhoneAlt />,
@@ -85,10 +126,6 @@ export default function Contact() {
               className="info-box"
               key={i}
               variants={fadeUp}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.2 }}
             >
               <div className="icon">{item.icon}</div>
               <div>
@@ -99,27 +136,21 @@ export default function Contact() {
           ))}
 
           {/* 🔥 SOCIAL */}
-          <motion.div
-            className="social-icons"
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-          >
+          <motion.div className="social-icons" variants={fadeUp}>
             <motion.a
-              href="https://facebook.com/yourpage"
+              href="https://www.facebook.com/people/Sharp-Class-Plus-%E0%A4%B6%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%AA-%E0%A4%95%E0%A5%8D%E0%A4%B2%E0%A4%BE%E0%A4%B8-%E0%A4%AA%E0%A5%8D%E0%A4%B2%E0%A4%B8/61570904293510/"
               target="_blank"
               rel="noreferrer"
-              whileHover={{ scale: 1.2 }}
+              whileHover={{ scale: 1.2, rotate: 5 }}
             >
               <FaFacebookF />
             </motion.a>
 
             <motion.a
-              href="https://youtube.com/yourchannel"
+              href="https://www.youtube.com/@mandalsirnepal/featured"
               target="_blank"
               rel="noreferrer"
-              whileHover={{ scale: 1.2 }}
+              whileHover={{ scale: 1.2, rotate: -5 }}
             >
               <FaYoutube />
             </motion.a>
@@ -140,21 +171,47 @@ export default function Contact() {
         <motion.form
           className="contact-form"
           variants={fadeRight}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
+          onSubmit={handleSubmit}
         >
 
           <h2>Send Us a Message</h2>
 
           <div className="form-row">
-            <input type="text" placeholder="Your Name *" required />
-            <input type="email" placeholder="Your Email *" required />
+            <input
+              type="text"
+              name="name"
+              placeholder="Your Name *"
+              value={formData.name}
+              onChange={handleChange}
+              required
+            />
+
+            <input
+              type="email"
+              name="email"
+              placeholder="Your Email *"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
           </div>
 
-          <input type="text" placeholder="Subject" />
+          <input
+            type="text"
+            name="subject"
+            placeholder="Subject"
+            value={formData.subject}
+            onChange={handleChange}
+          />
 
-          <textarea rows="5" placeholder="Your Message *" required></textarea>
+          <textarea
+            rows="5"
+            name="message"
+            placeholder="Your Message *"
+            value={formData.message}
+            onChange={handleChange}
+            required
+          ></textarea>
 
           <motion.button
             type="submit"
@@ -166,34 +223,29 @@ export default function Contact() {
 
         </motion.form>
 
-      </div>
- {/* 🔥 MAP SECTION */}
-<motion.div
-  className="map-section"
-  variants={fadeUp}
-  initial="hidden"
-  whileInView="show"
-  viewport={{ once: true }}
->
+      </motion.div>
 
-  {/* ✅ TITLE */}
-  <motion.h2
-    className="map-title"
-    variants={fadeUp}
-  >
-    📍 Find Us on Map
-  </motion.h2>
+      {/* 🔥 MAP */}
+      <motion.div
+        className="map-section"
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }}
+      >
+        <motion.h2 className="map-title" variants={fadeUp}>
+          📍 Find Us on Map
+        </motion.h2>
 
-  <iframe
-    src="https://maps.google.com/maps?q=26.4612006,87.2623174&z=17&output=embed"
-    width="100%"
-    height="400"
-    style={{ border: 0 }}
-    loading="lazy"
-    title="map"
-  ></iframe>
-
-</motion.div>
+        <iframe
+          src="https://maps.google.com/maps?q=26.4612006,87.2623174&z=17&output=embed"
+          width="100%"
+          height="400"
+          style={{ border: 0, borderRadius: "15px" }}
+          loading="lazy"
+          title="map"
+        ></iframe>
+      </motion.div>
 
     </div>
   );

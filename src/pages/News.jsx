@@ -1,16 +1,23 @@
 import "../css/News.css";
 
+// ✅ IMPORT LOCAL IMAGES
+import img6 from "../assets/6.jpg";
+
+
+import img9 from "../assets/9.jpg";
+import img10 from "../assets/10.jpg";
+
+import img13 from "../assets/13.jpg";
+
 const newsData = [
-  {
-    id: 1,
-    title: "Admission Open",
-    image: "https://picsum.photos/500/300?1",
-  },
-  {
-    id: 2,
-    title: "Exam Schedule Published",
-    image: "https://picsum.photos/500/300?2",
-  },
+  { id: 1, image: img6 },
+
+
+  { id: 2, image: img9 },
+  { id: 3, image: img10 },
+
+
+  { id: 4, image: img13 },
 ];
 
 export default function News() {
@@ -28,17 +35,13 @@ export default function News() {
 
       <div className="news-container">
 
-        {/* 🔥 GRID ONLY */}
+        {/* 🔥 GRID */}
         <div className="news-grid">
           {newsData.map((news) => (
             <div key={news.id} className="news-card">
 
               <div className="news-img">
-                <img src={news.image} alt={news.title} />
-              </div>
-
-              <div className="news-content">
-                <h3>{news.title}</h3>
+                <img src={news.image} alt="news" />
               </div>
 
             </div>

@@ -1,20 +1,22 @@
 import "../css/Home.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import "swiper/css/navigation";
-import { Navigation, Autoplay } from "swiper/modules";
+import { Autoplay } from "swiper/modules";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
+// ✅ IMAGES
+import img1 from "../assets/1.jpg";
+import img2 from "../assets/2.jpg";
+import img3 from "../assets/3.jpg";
+
 export default function Home() {
 
-  // 🔥 CUSTOM COUNT HOOK (NO LIBRARY)
   const CountUp = ({ end, suffix }) => {
     const [count, setCount] = useState(0);
 
     useEffect(() => {
-      let start = 0;
       const duration = 1500;
       const startTime = performance.now();
 
@@ -30,7 +32,7 @@ export default function Home() {
     return <>{count}{suffix}</>;
   };
 
-  // 🔥 Animation Variants
+  // 🔥 GLOBAL ANIMATION
   const fadeUp = {
     hidden: { opacity: 0, y: 60 },
     show: { opacity: 1, y: 0, transition: { duration: 0.8 } }
@@ -51,20 +53,26 @@ export default function Home() {
       title: "Build Your Future with",
       highlight: "Sharp Class Plus",
       desc: "Professional training for Engineering & Technical Careers",
-      img: "https://images.unsplash.com/photo-1581090700227-4c4b6c2f3d8b"
+      img: img1
     },
     {
       title: "Crack Engineering Exams with",
       highlight: "Expert Guidance",
       desc: "Learn from experienced instructors",
-      img: "https://images.unsplash.com/photo-1523580494863-6f3031224c94"
+      img: img2
     },
     {
       title: "Upgrade Your Skills with",
       highlight: "Practical Learning",
       desc: "Hands-on projects & real-world training",
-      img: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d"
+      img: img3
     }
+  ];
+
+  const testimonialsData = [
+    { text: "Amazing institute with real results!", name: "Sweta Thapa" },
+    { text: "Best place to prepare for engineering exams.", name: "Ramesh Karki" },
+    { text: "Teachers are very supportive and practical.", name: "Anita Sharma" }
   ];
 
   return (
@@ -73,9 +81,10 @@ export default function Home() {
       {/* 🔥 HERO */}
       <section className="hero-slider">
         <Swiper
-          modules={[Navigation, Autoplay]}
-          navigation
-          autoplay={{ delay: 4000 }}
+          modules={[Autoplay]}
+          navigation={false}
+          autoplay={{ delay: 1800, disableOnInteraction: false }}
+          speed={1000}
           loop={true}
         >
           {slides.map((slide, index) => (
@@ -88,23 +97,26 @@ export default function Home() {
 
                 <motion.div
                   className="hero-content"
+                  variants={fadeUp}
                   initial="hidden"
                   animate="show"
-                  variants={fadeUp}
                 >
-                  <h1>
+                  <motion.h1 variants={fadeUp}>
                     {slide.title} <span>{slide.highlight}</span>
-                  </h1>
-                  <p>{slide.desc}</p>
+                  </motion.h1>
 
-                  <div className="hero-buttons">
+                  <motion.p variants={fadeUp}>
+                    {slide.desc}
+                  </motion.p>
+
+                  <motion.div className="hero-buttons" variants={fadeUp}>
                     <Link to="/about">
                       <button className="primary-btn">Get Started</button>
                     </Link>
                     <Link to="/services">
                       <button className="secondary-btn">Explore Courses</button>
                     </Link>
-                  </div>
+                  </motion.div>
                 </motion.div>
 
               </div>
@@ -115,7 +127,7 @@ export default function Home() {
 
       {/* 🔥 COURSES */}
       <section className="courses-section">
-        <motion.h2 variants={fadeUp} initial="hidden" whileInView="show">
+        <motion.h2 variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}>
           Our Popular Courses
         </motion.h2>
 
@@ -131,9 +143,9 @@ export default function Home() {
               variants={fadeUp}
               initial="hidden"
               whileInView="show"
+              viewport={{ once: true }}
               transition={{ delay: i * 0.2 }}
             >
-              <div className="course-icon">🎓</div>
               <h3>{course.title}</h3>
               <p>{course.desc}</p>
             </motion.div>
@@ -141,21 +153,33 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 🔥 PRINCIPAL */}
+      {/* 🔥 DIRECTOR */}
       <section className="principal-section">
         <motion.div
           className="principal-content"
           variants={fadeLeft}
           initial="hidden"
           whileInView="show"
+          viewport={{ once: true }}
         >
-          <h2>Message from Principal</h2>
-          <p>"We focus on practical learning, real-world skills, and student success."</p>
-          <h4>- Principal</h4>
+          <motion.h2 variants={fadeUp}>Message from Director</motion.h2>
+
+          <motion.p variants={fadeUp}>
+            Dear All! <br /><br />
+            We thank you for trusting Sharp Class Plus Career Center. Education is not just for exams but for life.
+            <br /><br />
+            Our mission is to provide value-based engineering knowledge and help students achieve success.
+            <br /><br />
+            We wish you a rewarding experience at SCPCC!
+          </motion.p>
+
+          <motion.h4 variants={fadeUp}>
+            - Mr. Ranju Kumari Mandal
+          </motion.h4>
         </motion.div>
       </section>
 
-      {/* 🔥 ACHIEVEMENTS (FIXED + COUNT ANIMATION) */}
+      {/* 🔥 ACHIEVEMENTS */}
       <section className="achievements">
         {[
           { num: 500, suffix: "+", label: "Students" },
@@ -168,11 +192,10 @@ export default function Home() {
             variants={fadeUp}
             initial="hidden"
             whileInView="show"
+            viewport={{ once: true }}
             transition={{ delay: i * 0.2 }}
           >
-            <h2>
-              <CountUp end={item.num} suffix={item.suffix} />
-            </h2>
+            <h2><CountUp end={item.num} suffix={item.suffix} /></h2>
             <p>{item.label}</p>
           </motion.div>
         ))}
@@ -180,7 +203,7 @@ export default function Home() {
 
       {/* 🔥 FEATURES */}
       <section className="features-section">
-        <motion.h2 variants={fadeUp} initial="hidden" whileInView="show">
+        <motion.h2 variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}>
           Why Choose Us
         </motion.h2>
 
@@ -192,6 +215,7 @@ export default function Home() {
               variants={fadeRight}
               initial="hidden"
               whileInView="show"
+              viewport={{ once: true }}
               transition={{ delay: i * 0.2 }}
             >
               <h3>{f}</h3>
@@ -203,22 +227,23 @@ export default function Home() {
 
       {/* 🔥 TESTIMONIALS */}
       <section className="testimonials">
-        <motion.h2 variants={fadeUp} initial="hidden" whileInView="show">
+        <motion.h2 variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}>
           What Students Say
         </motion.h2>
 
         <div className="testimonial-grid">
-          {[1, 2, 3].map((t, i) => (
+          {testimonialsData.map((t, i) => (
             <motion.div
               className="testimonial-card"
-              key={t}
+              key={i}
               variants={fadeUp}
               initial="hidden"
               whileInView="show"
+              viewport={{ once: true }}
               transition={{ delay: i * 0.2 }}
             >
-              <p>"Amazing institute with real results!"</p>
-              <h4>- Student</h4>
+              <p>"{t.text}"</p>
+              <h4>- {t.name}</h4>
             </motion.div>
           ))}
         </div>
@@ -231,6 +256,7 @@ export default function Home() {
           variants={fadeUp}
           initial="hidden"
           whileInView="show"
+          viewport={{ once: true }}
         >
           <h2>🎉 Limited Offer</h2>
           <p className="discount">25% OFF</p>

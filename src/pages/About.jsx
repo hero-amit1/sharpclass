@@ -4,20 +4,52 @@ import { motion } from "framer-motion";
 
 export default function About() {
 
-  // 🔥 Animation Variants
+  // 🔥 PRO ANIMATION VARIANTS
   const fadeUp = {
-    hidden: { opacity: 0, y: 60 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.8 } }
+    hidden: { opacity: 0, y: 60, scale: 0.95 },
+    show: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.8,
+        ease: [0.25, 0.1, 0.25, 1]
+      }
+    }
   };
 
   const fadeLeft = {
     hidden: { opacity: 0, x: -80 },
-    show: { opacity: 1, x: 0, transition: { duration: 0.8 } }
+    show: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.25, 0.1, 0.25, 1]
+      }
+    }
   };
 
   const fadeRight = {
     hidden: { opacity: 0, x: 80 },
-    show: { opacity: 1, x: 0, transition: { duration: 0.8 } }
+    show: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.25, 0.1, 0.25, 1]
+      }
+    }
+  };
+
+  // 🔥 STAGGER CONTAINER (VERY IMPORTANT)
+  const container = {
+    hidden: {},
+    show: {
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
   };
 
   return (
@@ -29,17 +61,18 @@ export default function About() {
 
         <motion.div
           className="about-hero-content"
+          variants={container}
           initial="hidden"
           animate="show"
-          variants={fadeUp}
         >
-          <h1>
+          <motion.h1 variants={fadeUp}>
             About <span>Sharp Class Plus</span>
-          </h1>
-          <p>
+          </motion.h1>
+
+          <motion.p variants={fadeUp}>
             Shaping future professionals through quality education,
             practical skills, and expert guidance.
-          </p>
+          </motion.p>
         </motion.div>
       </section>
 
@@ -50,21 +83,20 @@ export default function About() {
 
           <motion.div
             className="about-text"
-            variants={fadeLeft}
+            variants={container}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.3 }}
           >
-            <h2>Who We Are</h2>
-            <p>
-              <strong>Sharp Class Plus</strong> is a premier institute dedicated
-              to preparing students for engineering, IT, and public service careers.
-            </p>
-            <p>
-              Our approach combines <strong>conceptual learning</strong> with
-              <strong> real-world application</strong>, ensuring students not only
-              pass exams but excel in their professional journey.
-            </p>
+            <motion.h2 variants={fadeLeft}>Who We Are</motion.h2>
+
+            <motion.p variants={fadeLeft}>
+              <strong>Sharp Class Plus</strong> is the only for Engineering Entrance Preparation Centre promoted by front-line entrance specialist faculties who have crafted thousands of Engineers so far...
+            </motion.p>
+
+            <motion.p variants={fadeLeft}>
+              To create best Institute in Nepal for the preparation of Lok Sewa Preparation entrance exam along with other competitive exams...
+            </motion.p>
           </motion.div>
 
           <motion.div
@@ -72,7 +104,8 @@ export default function About() {
             variants={fadeRight}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.3 }}
+            whileHover={{ scale: 1.05 }} // 🔥 subtle hover effect
           >
             <img
               src="https://images.unsplash.com/photo-1523240795612-9a054b0db644"
@@ -83,29 +116,33 @@ export default function About() {
         </div>
 
         {/* 🔥 STATS */}
-        <div className="about-stats">
+        <motion.div
+          className="about-stats"
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+        >
           {[
             { num: "500+", label: "Students Trained" },
             { num: "50+", label: "Expert Trainers" },
             { num: "95%", label: "Success Rate" }
           ].map((stat, i) => (
-            <motion.div
-              className="stat"
-              key={i}
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.2 }}
-            >
+            <motion.div className="stat" key={i} variants={fadeUp}>
               <h3>{stat.num}</h3>
               <p>{stat.label}</p>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* 🔥 FEATURES */}
-        <div className="about-features">
+        <motion.div
+          className="about-features"
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+        >
           {[
             {
               title: "Expert Faculty",
@@ -113,7 +150,7 @@ export default function About() {
             },
             {
               title: "Practical Learning",
-              desc: "Hands-on training with real-world projects & case studies."
+              desc: "Hands-on training with real-world projects."
             },
             {
               title: "Career Guidance",
@@ -124,16 +161,13 @@ export default function About() {
               className="feature-box"
               key={i}
               variants={fadeUp}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.2 }}
+              whileHover={{ y: -8 }} // 🔥 lift effect
             >
               <h3>{f.title}</h3>
               <p>{f.desc}</p>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* 🔥 MISSION / VISION */}
         <div className="mission">
@@ -144,11 +178,11 @@ export default function About() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
+            whileHover={{ scale: 1.03 }}
           >
             <h2>Our Mission</h2>
             <p>
-              To empower students with high-quality education, practical skills,
-              and the confidence needed to succeed in competitive environments.
+              To empower students with high-quality education and confidence.
             </p>
           </motion.div>
 
@@ -158,31 +192,33 @@ export default function About() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
+            whileHover={{ scale: 1.03 }}
           >
             <h2>Our Vision</h2>
             <p>
-              To become a nationally recognized institute known for excellence,
-              innovation, and student success.
+              To become a nationally recognized institute for excellence.
             </p>
           </motion.div>
 
         </div>
 
-        {/* 🔥 PRINCIPAL */}
+        {/* 🔥 DIRECTOR */}
         <motion.div
           className="principal"
-          variants={fadeUp}
+          variants={container}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
         >
-          <h2>Message from the Principal</h2>
-          <p>
-            “At Sharp Class Plus, we believe education is not just about passing exams,
-            but about building a strong foundation for life. Our goal is to guide every
-            student toward success with dedication, discipline, and innovation.”
-          </p>
-          <h4>— Principal, Sharp Class Plus</h4>
+          <motion.h2 variants={fadeUp}>Message from the Director</motion.h2>
+
+          <motion.p variants={fadeUp}>
+            “Dear All! At the outset, we would like to express our gratitude...
+          </motion.p>
+
+          <motion.h4 variants={fadeUp}>
+            — Director, Mr. Ranju Kumari Mandal
+          </motion.h4>
         </motion.div>
 
         {/* 🔥 ACHIEVEMENTS */}
@@ -196,53 +232,50 @@ export default function About() {
             Our Achievements
           </motion.h2>
 
-          <div className="achieve-grid">
+          <motion.div
+            className="achieve-grid"
+            variants={container}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+          >
             {[
-              {
-                title: "Top Results",
-                desc: "Consistently high rankings in competitive exams."
-              },
-              {
-                title: "Trusted Institute",
-                desc: "Recognized by hundreds of successful students."
-              },
-              {
-                title: "Modern Learning",
-                desc: "Advanced teaching methods & digital resources."
-              }
+              { title: "Top Results", desc: "High rankings in exams." },
+              { title: "Trusted Institute", desc: "Hundreds of success stories." },
+              { title: "Modern Learning", desc: "Advanced teaching methods." }
             ].map((a, i) => (
               <motion.div
                 className="achieve-card"
                 key={i}
                 variants={fadeUp}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.2 }}
+                whileHover={{ scale: 1.05 }}
               >
                 <h3>{a.title}</h3>
                 <p>{a.desc}</p>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
 
         {/* 🔥 CTA */}
         <motion.div
           className="about-cta"
-          variants={fadeUp}
+          variants={container}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
         >
-          <h2>Join Us & Build Your Future 🚀</h2>
-          <p>
+          <motion.h2 variants={fadeUp}>
+            Join Us & Build Your Future 🚀
+          </motion.h2>
+
+          <motion.p variants={fadeUp}>
             Start your journey with Sharp Class Plus and achieve your career goals.
-          </p>
+          </motion.p>
 
           <Link to="/enroll">
             <motion.button
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.08 }}
               whileTap={{ scale: 0.95 }}
             >
               Enroll Now
