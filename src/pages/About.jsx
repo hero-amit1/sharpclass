@@ -1,10 +1,11 @@
 import "../css/About.css";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import whoImg from "../assets/wwho.jpg"; // ✅ local image
 
 export default function About() {
 
-  // 🔥 PRO ANIMATION VARIANTS
+  // 🔥 ANIMATION VARIANTS
   const fadeUp = {
     hidden: { opacity: 0, y: 60, scale: 0.95 },
     show: {
@@ -23,10 +24,7 @@ export default function About() {
     show: {
       opacity: 1,
       x: 0,
-      transition: {
-        duration: 0.8,
-        ease: [0.25, 0.1, 0.25, 1]
-      }
+      transition: { duration: 0.8 }
     }
   };
 
@@ -35,20 +33,14 @@ export default function About() {
     show: {
       opacity: 1,
       x: 0,
-      transition: {
-        duration: 0.8,
-        ease: [0.25, 0.1, 0.25, 1]
-      }
+      transition: { duration: 0.8 }
     }
   };
 
-  // 🔥 STAGGER CONTAINER (VERY IMPORTANT)
   const container = {
     hidden: {},
     show: {
-      transition: {
-        staggerChildren: 0.2
-      }
+      transition: { staggerChildren: 0.2 }
     }
   };
 
@@ -66,7 +58,7 @@ export default function About() {
           animate="show"
         >
           <motion.h1 variants={fadeUp}>
-            About <span>Sharp Class Plus</span>
+            About <span>Shree Class Plus</span>
           </motion.h1>
 
           <motion.p variants={fadeUp}>
@@ -91,11 +83,16 @@ export default function About() {
             <motion.h2 variants={fadeLeft}>Who We Are</motion.h2>
 
             <motion.p variants={fadeLeft}>
-              <strong>Sharp Class Plus</strong> is the only for Engineering Entrance Preparation Centre promoted by front-line entrance specialist faculties who have crafted thousands of Engineers so far...
+              <strong>Shree Class Plus</strong> is a leading institute for
+              Engineering Entrance Preparation and competitive exams. Our expert
+              faculty have helped thousands of students achieve their academic
+              and career goals.
             </motion.p>
 
             <motion.p variants={fadeLeft}>
-              To create best Institute in Nepal for the preparation of Lok Sewa Preparation entrance exam along with other competitive exams...
+              We aim to build one of the best institutes in Nepal for entrance
+              preparation including IOE, Lok Sewa, and university-level exams
+              through quality teaching and modern learning methods.
             </motion.p>
           </motion.div>
 
@@ -105,11 +102,12 @@ export default function About() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.3 }}
-            whileHover={{ scale: 1.05 }} // 🔥 subtle hover effect
+            whileHover={{ scale: 1.05 }}
           >
             <img
-              src="https://images.unsplash.com/photo-1523240795612-9a054b0db644"
-              alt="students"
+              src={whoImg}
+              alt="Shree Class Plus students learning"
+              loading="lazy"
             />
           </motion.div>
 
@@ -146,22 +144,22 @@ export default function About() {
           {[
             {
               title: "Expert Faculty",
-              desc: "Learn from experienced mentors and industry experts."
+              desc: "Learn from experienced mentors and entrance specialists."
             },
             {
               title: "Practical Learning",
-              desc: "Hands-on training with real-world projects."
+              desc: "Concept-based learning with real exam practice."
             },
             {
               title: "Career Guidance",
-              desc: "Complete support from learning to job placement."
+              desc: "Full support from preparation to success."
             }
           ].map((f, i) => (
             <motion.div
               className="feature-box"
               key={i}
               variants={fadeUp}
-              whileHover={{ y: -8 }} // 🔥 lift effect
+              whileHover={{ y: -8 }}
             >
               <h3>{f.title}</h3>
               <p>{f.desc}</p>
@@ -182,7 +180,8 @@ export default function About() {
           >
             <h2>Our Mission</h2>
             <p>
-              To empower students with high-quality education and confidence.
+              To empower students with high-quality education, confidence, and
+              competitive skills.
             </p>
           </motion.div>
 
@@ -196,7 +195,8 @@ export default function About() {
           >
             <h2>Our Vision</h2>
             <p>
-              To become a nationally recognized institute for excellence.
+              To become a nationally recognized institute for excellence in
+              entrance preparation.
             </p>
           </motion.div>
 
@@ -210,14 +210,17 @@ export default function About() {
           whileInView="show"
           viewport={{ once: true }}
         >
-          <motion.h2 variants={fadeUp}>Message from the Director</motion.h2>
+          <motion.h2 variants={fadeUp}>
+            Message from the Director
+          </motion.h2>
 
           <motion.p variants={fadeUp}>
-            “Dear All! At the outset, we would like to express our gratitude...
+            “We are committed to providing the best education and guidance to
+            help students succeed in their entrance exams and future careers.”
           </motion.p>
 
           <motion.h4 variants={fadeUp}>
-            — Director, Mr. Ranju Kumari Mandal
+            — Director, Ms. Ranju Kumari Mandal
           </motion.h4>
         </motion.div>
 
@@ -240,7 +243,7 @@ export default function About() {
             viewport={{ once: true }}
           >
             {[
-              { title: "Top Results", desc: "High rankings in exams." },
+              { title: "Top Results", desc: "High rankings in entrance exams." },
               { title: "Trusted Institute", desc: "Hundreds of success stories." },
               { title: "Modern Learning", desc: "Advanced teaching methods." }
             ].map((a, i) => (
@@ -270,7 +273,7 @@ export default function About() {
           </motion.h2>
 
           <motion.p variants={fadeUp}>
-            Start your journey with Sharp Class Plus and achieve your career goals.
+            Start your journey with Shree Class Plus and achieve your career goals.
           </motion.p>
 
           <Link to="/enroll">

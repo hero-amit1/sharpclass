@@ -135,7 +135,7 @@ export default function Home() {
           {[
             { title: "Engineer Preparation", desc: "Complete preparation for engineering entrance exams." },
             { title: "Sub-Engineer", desc: "Focused training for technical competitive exams." },
-            { title: "Crash Courses", desc: "Quick revision & intensive preparation programs." }
+            { title: "University Courses", desc: "Quick revision & intensive preparation programs." }
           ].map((course, i) => (
             <motion.div
               className="course-card"
@@ -174,7 +174,7 @@ export default function Home() {
           </motion.p>
 
           <motion.h4 variants={fadeUp}>
-            - Mr. Ranju Kumari Mandal
+            - Ms. Ranju Kumari Mandal
           </motion.h4>
         </motion.div>
       </section>
