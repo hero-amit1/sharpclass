@@ -107,8 +107,8 @@ export default function Contact() {
               icon: <FaPhoneAlt />,
               title: "Phone",
               value: (
-                <a href="tel:+9779804044190">
-                  +977 9804044190
+                <a href="tel:+9779804044190 , 9709025820">
+                  +977 9804044190 , 9709025820
                 </a>
               )
             },

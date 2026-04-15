@@ -76,8 +76,8 @@ export default function Footer() {
             <li>Engineer Preparation</li>
             <li>Sub Engineer</li>
             <li>Assistant Sub Engineer</li>
-            <li>Weekly & Monthly Tests</li>
-            <li>Crash Courses</li>
+            <li>NEC Preparation</li>
+            <li>Khane Pani & sarasafai Technician</li>
           </ul>
         </motion.div>
 
@@ -91,7 +91,7 @@ export default function Footer() {
 
           <p>
             <FaPhoneAlt />
-            <a href="tel:+9779804044190"> +977 9804044190</a>
+            <a href="tel:+9779804044190"> +977 9804044190 , 9709025820</a>
           </p>
 
           <p>

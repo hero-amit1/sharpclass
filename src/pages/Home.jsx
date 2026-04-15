@@ -6,6 +6,9 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
+// ✅ ICONS
+import { FaUserGraduate, FaTools, FaHardHat, FaCertificate, FaTint } from "react-icons/fa";
+
 // ✅ IMAGES
 import img1 from "../assets/1.jpg";
 import img2 from "../assets/2.jpg";
@@ -13,26 +16,7 @@ import img3 from "../assets/3.jpg";
 
 export default function Home() {
 
-  const CountUp = ({ end, suffix }) => {
-    const [count, setCount] = useState(0);
-
-    useEffect(() => {
-      const duration = 1500;
-      const startTime = performance.now();
-
-      const animate = (time) => {
-        const progress = Math.min((time - startTime) / duration, 1);
-        setCount(Math.floor(progress * end));
-        if (progress < 1) requestAnimationFrame(animate);
-      };
-
-      requestAnimationFrame(animate);
-    }, [end]);
-
-    return <>{count}{suffix}</>;
-  };
-
-  // 🔥 GLOBAL ANIMATION
+  // 🔥 ANIMATION
   const fadeUp = {
     hidden: { opacity: 0, y: 60 },
     show: { opacity: 1, y: 0, transition: { duration: 0.8 } }
@@ -48,6 +32,7 @@ export default function Home() {
     show: { opacity: 1, x: 0, transition: { duration: 0.8 } }
   };
 
+  // 🔥 HERO SLIDES
   const slides = [
     {
       title: "Build Your Future with",
@@ -69,6 +54,35 @@ export default function Home() {
     }
   ];
 
+  // 🔥 COURSES WITH ICONS
+  const coursesData = [
+    {
+      title: "Engineer Preparation",
+      desc: "Complete preparation for engineering entrance and government competitive exams.",
+      icon: <FaUserGraduate />
+    },
+    {
+      title: "Sub-Engineer Preparation",
+      desc: "Focused training for sub-engineer level technical and public service exams.",
+      icon: <FaTools />
+    },
+    {
+      title: "Assistant Sub-Engineer",
+      desc: "Comprehensive coaching for assistant sub-engineer exams with practical concepts.",
+      icon: <FaHardHat />
+    },
+    {
+      title: "NEC License Preparation",
+      desc: "Specialized preparation for Nepal Engineering Council (NEC) licensing exams.",
+      icon: <FaCertificate />
+    },
+    {
+      title: "Khane Pani & Sarasaafai Technician",
+      desc: "Targeted courses for water supply and sanitation technician-level exams.",
+      icon: <FaTint />
+    }
+  ];
+
   const testimonialsData = [
     { text: "Amazing institute with real results!", name: "Sweta Thapa" },
     { text: "Best place to prepare for engineering exams.", name: "Ramesh Karki" },
@@ -82,8 +96,7 @@ export default function Home() {
       <section className="hero-slider">
         <Swiper
           modules={[Autoplay]}
-          navigation={false}
-          autoplay={{ delay: 1800, disableOnInteraction: false }}
+          autoplay={{ delay: 1800 }}
           speed={1000}
           loop={true}
         >
@@ -101,22 +114,20 @@ export default function Home() {
                   initial="hidden"
                   animate="show"
                 >
-                  <motion.h1 variants={fadeUp}>
+                  <h1>
                     {slide.title} <span>{slide.highlight}</span>
-                  </motion.h1>
+                  </h1>
 
-                  <motion.p variants={fadeUp}>
-                    {slide.desc}
-                  </motion.p>
+                  <p>{slide.desc}</p>
 
-                  <motion.div className="hero-buttons" variants={fadeUp}>
+                  <div className="hero-buttons">
                     <Link to="/about">
                       <button className="primary-btn">Get Started</button>
                     </Link>
                     <Link to="/services">
                       <button className="secondary-btn">Explore Courses</button>
                     </Link>
-                  </motion.div>
+                  </div>
                 </motion.div>
 
               </div>
@@ -127,30 +138,54 @@ export default function Home() {
 
       {/* 🔥 COURSES */}
       <section className="courses-section">
-        <motion.h2 variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}>
+        <motion.h2 variants={fadeUp} initial="hidden" whileInView="show">
           Our Popular Courses
         </motion.h2>
 
         <div className="courses">
-          {[
-            { title: "Engineer Preparation", desc: "Complete preparation for engineering entrance exams." },
-            { title: "Sub-Engineer", desc: "Focused training for technical competitive exams." },
-            { title: "University Courses", desc: "Quick revision & intensive preparation programs." }
-          ].map((course, i) => (
+          {coursesData.map((course, i) => (
             <motion.div
               className="course-card"
               key={i}
               variants={fadeUp}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true }}
               transition={{ delay: i * 0.2 }}
             >
+              <div className="course-icon">{course.icon}</div>
               <h3>{course.title}</h3>
               <p>{course.desc}</p>
             </motion.div>
           ))}
         </div>
+      </section>
+
+      {/* 🔥 VIDEO */}
+      {/* 🔥 VIDEO */}
+      <section className="video-section">
+        <motion.h2
+          className="video-title"
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+        >
+          Watch Our <span>Classes</span>
+        </motion.h2>
+
+        <motion.div
+          className="video-container"
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+        >
+          <iframe
+            src="https://www.youtube-nocookie.com/embed/XubOlWcoF9w?start=191"
+            title="YouTube video"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
+        </motion.div>
       </section>
 
       {/* 🔥 DIRECTOR */}
@@ -160,50 +195,27 @@ export default function Home() {
           variants={fadeLeft}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true }}
         >
-          <motion.h2 variants={fadeUp}>Message from Director</motion.h2>
+          <h2>Message from Director</h2>
 
-          <motion.p variants={fadeUp}>
+          <p>
             Dear All! <br /><br />
-            We thank you for trusting Sharp Class Plus Career Center. Education is not just for exams but for life.
+            We thank you for trusting Sharp Class Plus Career Center.
+            Education is not just for exams but for life.
             <br /><br />
-            Our mission is to provide value-based engineering knowledge and help students achieve success.
+            Our mission is to provide value-based engineering knowledge
+            and help students achieve success.
             <br /><br />
             We wish you a rewarding experience at SCPCC!
-          </motion.p>
+          </p>
 
-          <motion.h4 variants={fadeUp}>
-            - Ms. Ranju Kumari Mandal
-          </motion.h4>
+          <h4>- Ms. Ranju Kumari Mandal</h4>
         </motion.div>
-      </section>
-
-      {/* 🔥 ACHIEVEMENTS */}
-      <section className="achievements">
-        {[
-          { num: 500, suffix: "+", label: "Students" },
-          { num: 95, suffix: "%", label: "Success Rate" },
-          { num: 50, suffix: "+", label: "Courses" }
-        ].map((item, i) => (
-          <motion.div
-            className="achieve-box"
-            key={i}
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.2 }}
-          >
-            <h2><CountUp end={item.num} suffix={item.suffix} /></h2>
-            <p>{item.label}</p>
-          </motion.div>
-        ))}
       </section>
 
       {/* 🔥 FEATURES */}
       <section className="features-section">
-        <motion.h2 variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}>
+        <motion.h2 variants={fadeUp} initial="hidden" whileInView="show">
           Why Choose Us
         </motion.h2>
 
@@ -215,7 +227,6 @@ export default function Home() {
               variants={fadeRight}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true }}
               transition={{ delay: i * 0.2 }}
             >
               <h3>{f}</h3>
@@ -227,7 +238,7 @@ export default function Home() {
 
       {/* 🔥 TESTIMONIALS */}
       <section className="testimonials">
-        <motion.h2 variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}>
+        <motion.h2 variants={fadeUp} initial="hidden" whileInView="show">
           What Students Say
         </motion.h2>
 
@@ -239,7 +250,6 @@ export default function Home() {
               variants={fadeUp}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true }}
               transition={{ delay: i * 0.2 }}
             >
               <p>"{t.text}"</p>
@@ -256,7 +266,6 @@ export default function Home() {
           variants={fadeUp}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true }}
         >
           <h2>🎉 Limited Offer</h2>
           <p className="discount">25% OFF</p>

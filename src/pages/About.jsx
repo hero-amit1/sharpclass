@@ -122,8 +122,8 @@ export default function About() {
           viewport={{ once: true }}
         >
           {[
-            { num: "500+", label: "Students Trained" },
-            { num: "50+", label: "Expert Trainers" },
+            { num: "120+", label: "Students Trained" },
+            { num: "10+", label: "Expert Trainers" },
             { num: "95%", label: "Success Rate" }
           ].map((stat, i) => (
             <motion.div className="stat" key={i} variants={fadeUp}>
