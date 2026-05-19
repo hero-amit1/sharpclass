@@ -1,9 +1,18 @@
 import "../css/About.css";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import whoImg from "../assets/wwho.jpg"; // ✅ local image
+import { useEffect } from "react";
+import whoImg from "../assets/wwho.jpg";
 
 export default function About() {
+
+  // ✅ Scroll to top when page opens
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
 
   // 🔥 ANIMATION VARIANTS
   const fadeUp = {
@@ -14,9 +23,9 @@ export default function About() {
       scale: 1,
       transition: {
         duration: 0.8,
-        ease: [0.25, 0.1, 0.25, 1]
-      }
-    }
+        ease: [0.25, 0.1, 0.25, 1],
+      },
+    },
   };
 
   const fadeLeft = {
@@ -24,8 +33,8 @@ export default function About() {
     show: {
       opacity: 1,
       x: 0,
-      transition: { duration: 0.8 }
-    }
+      transition: { duration: 0.8 },
+    },
   };
 
   const fadeRight = {
@@ -33,15 +42,17 @@ export default function About() {
     show: {
       opacity: 1,
       x: 0,
-      transition: { duration: 0.8 }
-    }
+      transition: { duration: 0.8 },
+    },
   };
 
   const container = {
     hidden: {},
     show: {
-      transition: { staggerChildren: 0.2 }
-    }
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
   };
 
   return (
@@ -80,19 +91,22 @@ export default function About() {
             whileInView="show"
             viewport={{ once: true, amount: 0.3 }}
           >
-            <motion.h2 variants={fadeLeft}>Who We Are</motion.h2>
+            <motion.h2 variants={fadeLeft}>
+              Who We Are
+            </motion.h2>
 
             <motion.p variants={fadeLeft}>
               <strong>Shree Class Plus</strong> is a leading institute for
-              Engineering Entrance Preparation and competitive exams. Our expert
-              faculty have helped thousands of students achieve their academic
-              and career goals.
+              Engineering Entrance Preparation and competitive exams.
+              Our expert faculty have helped thousands of students
+              achieve their academic and career goals.
             </motion.p>
 
             <motion.p variants={fadeLeft}>
-              We aim to build one of the best institutes in Nepal for entrance
-              preparation including IOE, Lok Sewa, and university-level exams
-              through quality teaching and modern learning methods.
+              We aim to build one of the best institutes in Nepal
+              for entrance preparation including IOE, Lok Sewa,
+              and university-level exams through quality teaching
+              and modern learning methods.
             </motion.p>
           </motion.div>
 
@@ -122,11 +136,24 @@ export default function About() {
           viewport={{ once: true }}
         >
           {[
-            { num: "120+", label: "Students Trained" },
-            { num: "10+", label: "Expert Trainers" },
-            { num: "95%", label: "Success Rate" }
+            {
+              num: "120+",
+              label: "Students Trained",
+            },
+            {
+              num: "10+",
+              label: "Expert Trainers",
+            },
+            {
+              num: "95%",
+              label: "Success Rate",
+            },
           ].map((stat, i) => (
-            <motion.div className="stat" key={i} variants={fadeUp}>
+            <motion.div
+              className="stat"
+              key={i}
+              variants={fadeUp}
+            >
               <h3>{stat.num}</h3>
               <p>{stat.label}</p>
             </motion.div>
@@ -144,16 +171,16 @@ export default function About() {
           {[
             {
               title: "Expert Faculty",
-              desc: "Learn from experienced mentors and entrance specialists."
+              desc: "Learn from experienced mentors and entrance specialists.",
             },
             {
               title: "Practical Learning",
-              desc: "Concept-based learning with real exam practice."
+              desc: "Concept-based learning with real exam practice.",
             },
             {
               title: "Career Guidance",
-              desc: "Full support from preparation to success."
-            }
+              desc: "Full support from preparation to success.",
+            },
           ].map((f, i) => (
             <motion.div
               className="feature-box"
@@ -179,9 +206,10 @@ export default function About() {
             whileHover={{ scale: 1.03 }}
           >
             <h2>Our Mission</h2>
+
             <p>
-              To empower students with high-quality education, confidence, and
-              competitive skills.
+              To empower students with high-quality education,
+              confidence, and competitive skills.
             </p>
           </motion.div>
 
@@ -194,9 +222,10 @@ export default function About() {
             whileHover={{ scale: 1.03 }}
           >
             <h2>Our Vision</h2>
+
             <p>
-              To become a nationally recognized institute for excellence in
-              entrance preparation.
+              To become a nationally recognized institute
+              for excellence in entrance preparation.
             </p>
           </motion.div>
 
@@ -215,8 +244,9 @@ export default function About() {
           </motion.h2>
 
           <motion.p variants={fadeUp}>
-            “We are committed to providing the best education and guidance to
-            help students succeed in their entrance exams and future careers.”
+            “We are committed to providing the best education
+            and guidance to help students succeed in their
+            entrance exams and future careers.”
           </motion.p>
 
           <motion.h4 variants={fadeUp}>
@@ -226,6 +256,7 @@ export default function About() {
 
         {/* 🔥 ACHIEVEMENTS */}
         <div className="achievements">
+
           <motion.h2
             variants={fadeUp}
             initial="hidden"
@@ -243,9 +274,18 @@ export default function About() {
             viewport={{ once: true }}
           >
             {[
-              { title: "Top Results", desc: "High rankings in entrance exams." },
-              { title: "Trusted Institute", desc: "Hundreds of success stories." },
-              { title: "Modern Learning", desc: "Advanced teaching methods." }
+              {
+                title: "Top Results",
+                desc: "High rankings in entrance exams.",
+              },
+              {
+                title: "Trusted Institute",
+                desc: "Hundreds of success stories.",
+              },
+              {
+                title: "Modern Learning",
+                desc: "Advanced teaching methods.",
+              },
             ].map((a, i) => (
               <motion.div
                 className="achieve-card"
@@ -258,6 +298,7 @@ export default function About() {
               </motion.div>
             ))}
           </motion.div>
+
         </div>
 
         {/* 🔥 CTA */}
@@ -273,7 +314,8 @@ export default function About() {
           </motion.h2>
 
           <motion.p variants={fadeUp}>
-            Start your journey with Shree Class Plus and achieve your career goals.
+            Start your journey with Shree Class Plus
+            and achieve your career goals.
           </motion.p>
 
           <Link to="/enroll">

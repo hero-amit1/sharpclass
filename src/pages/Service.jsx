@@ -7,6 +7,7 @@ import {
 import { Link } from "react-router-dom";
 import "../css/Service.css";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet-async";
 
 const courses = [
   {
@@ -48,6 +49,12 @@ const courses = [
 
 export default function Services() {
 
+  // 🔥 Scroll To Top
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+
   // 🔥 Animation Variants
   const fadeUp = {
     hidden: { opacity: 0, y: 60 },
@@ -69,171 +76,215 @@ export default function Services() {
   };
 
   return (
-    <div className="services">
+    <>
+      {/* ✅ SEO */}
+      <Helmet>
+        <title>
+          Our Courses | Shree Class Plus Biratnagar
+        </title>
 
-      {/* 🔥 HERO */}
-      <section className="services-hero">
-        <div className="overlay"></div>
+        <meta
+          name="description"
+          content="Explore engineering preparation, NEC license preparation, sub-engineer, assistant sub-engineer, and Loksewa technical courses at Shree Class Plus Biratnagar."
+        />
 
-        <motion.div
-          className="services-hero-content"
-          initial="hidden"
-          animate="show"
-          variants={fadeUp}
-        >
-          <h1>
-            Upgrade Your Skills with <span>Professional Training</span>
-          </h1>
-          <p>
-            We deliver high-quality, career-focused education to help you
-            succeed in competitive exams and real-world careers.
-          </p>
-        </motion.div>
-      </section>
+        <meta
+          name="keywords"
+          content="Engineer Preparation Nepal, NEC Preparation, Sub Engineer Course, Loksewa Engineering, Shree Class Plus, Biratnagar Institute"
+        />
 
-      <div className="services-container">
+        <meta
+          property="og:title"
+          content="Professional Engineering Courses | Shree Class Plus"
+        />
 
-        {/* 🔥 TITLE */}
-        <motion.div
-          className="section-title"
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-        >
-          <h2>
-            Our <span>Courses</span>
-          </h2>
-          <p>
-            Choose from our most in-demand professional courses designed for success.
-          </p>
-        </motion.div>
+        <meta
+          property="og:description"
+          content="Join Nepal's trusted engineering and technical preparation institute in Biratnagar."
+        />
 
-        {/* 🔥 COURSES GRID */}
-        <div className="services-grid">
-          {courses.map((course, i) => (
-            <motion.div
-              key={i}
-              className="service-card"
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.2 }}
-            >
-              <div className="service-icon">
-                {course.icon}
-              </div>
+        <meta
+          property="og:url"
+          content="https://shreeclassplus.com.np/services"
+        />
 
-              <h3>{course.title}</h3>
-              <p>{course.description}</p>
+        <link
+          rel="canonical"
+          href="https://shreeclassplus.com.np/services"
+        />
+      </Helmet>
 
-              <Link
-                to={`/course/${course.slug}`}
-                style={{ textDecoration: "none" }}
-              >
-                <button className="service-btn">
-                  Explore Course →
-                </button>
-              </Link>
-            </motion.div>
-          ))}
-        </div>
+      <div className="services">
 
-        {/* 🔥 PROCESS */}
-        <motion.div
-          className="process"
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-        >
-          <h2>
-            Your Journey to <span>Success</span>
-          </h2>
+        {/* 🔥 HERO */}
+        <section className="services-hero">
+          <div className="overlay"></div>
 
-          <div className="process-steps">
-            {["Enroll", "Learn", "Practice", "Achieve"].map((step, i) => (
+          <motion.div
+            className="services-hero-content"
+            initial="hidden"
+            animate="show"
+            variants={fadeUp}
+          >
+            <h1>
+              Upgrade Your Skills with <span>Professional Training</span>
+            </h1>
+
+            <p>
+              We deliver high-quality, career-focused education to help you
+              succeed in competitive exams and real-world careers.
+            </p>
+          </motion.div>
+        </section>
+
+        <div className="services-container">
+
+          {/* 🔥 TITLE */}
+          <motion.div
+            className="section-title"
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+          >
+            <h2>
+              Our <span>Courses</span>
+            </h2>
+
+            <p>
+              Choose from our most in-demand professional courses designed for success.
+            </p>
+          </motion.div>
+
+          {/* 🔥 COURSES GRID */}
+          <div className="services-grid">
+            {courses.map((course, i) => (
               <motion.div
-                className="step"
                 key={i}
+                className="service-card"
                 variants={fadeUp}
                 initial="hidden"
                 whileInView="show"
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.2 }}
               >
-                <FaCheckCircle />
-                <h4>{step}</h4>
-                <p>
-                  {
-                    [
-                      "Select your preferred course",
-                      "Attend expert-led interactive classes",
-                      "Improve through tests & assignments",
-                      "Crack exams and build your career",
-                    ][i]
-                  }
-                </p>
+                <div className="service-icon">
+                  {course.icon}
+                </div>
+
+                <h3>{course.title}</h3>
+                <p>{course.description}</p>
+
+                <Link
+                  to={`/course/${course.slug}`}
+                  style={{ textDecoration: "none" }}
+                >
+                  <button className="service-btn">
+                    Explore Course →
+                  </button>
+                </Link>
               </motion.div>
             ))}
           </div>
-        </motion.div>
 
-        {/* 🔥 WHY US */}
-        <motion.div
-          className="why-us"
-          variants={fadeLeft}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-        >
-          <h2>
-            Why Students <span>Choose Us</span>
-          </h2>
+          {/* 🔥 PROCESS */}
+          <motion.div
+            className="process"
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+          >
+            <h2>
+              Your Journey to <span>Success</span>
+            </h2>
 
-          <ul>
-            {[
-              "Expert instructors with real industry experience",
-              "Practical, hands-on training approach",
-              "Regular tests & detailed performance analysis",
-              "Personal mentorship and career guidance",
-              "Proven success record of students",
-            ].map((item, i) => (
-              <motion.li
-                key={i}
-                variants={fadeRight}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.2 }}
-              >
-                {item}
-              </motion.li>
-            ))}
-          </ul>
-        </motion.div>
+            <div className="process-steps">
+              {["Enroll", "Learn", "Practice", "Achieve"].map((step, i) => (
+                <motion.div
+                  className="step"
+                  key={i}
+                  variants={fadeUp}
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.2 }}
+                >
+                  <FaCheckCircle />
 
-        {/* 🔥 CTA */}
-        <motion.div
-          className="services-cta"
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-        >
-          <h2>Start Your Career Journey Today 🚀</h2>
-          <p>
-            Join our professional courses and take the first step toward your
-            dream career.
-          </p>
+                  <h4>{step}</h4>
 
-          <Link to="/enroll">
-            <button>Enroll Now</button>
-          </Link>
-        </motion.div>
+                  <p>
+                    {
+                      [
+                        "Select your preferred course",
+                        "Attend expert-led interactive classes",
+                        "Improve through tests & assignments",
+                        "Crack exams and build your career",
+                      ][i]
+                    }
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
 
+          {/* 🔥 WHY US */}
+          <motion.div
+            className="why-us"
+            variants={fadeLeft}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+          >
+            <h2>
+              Why Students <span>Choose Us</span>
+            </h2>
+
+            <ul>
+              {[
+                "Expert instructors with real industry experience",
+                "Practical, hands-on training approach",
+                "Regular tests & detailed performance analysis",
+                "Personal mentorship and career guidance",
+                "Proven success record of students",
+              ].map((item, i) => (
+                <motion.li
+                  key={i}
+                  variants={fadeRight}
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.2 }}
+                >
+                  {item}
+                </motion.li>
+              ))}
+            </ul>
+          </motion.div>
+
+          {/* 🔥 CTA */}
+          <motion.div
+            className="services-cta"
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+          >
+            <h2>Start Your Career Journey Today 🚀</h2>
+
+            <p>
+              Join our professional courses and take the first step toward your
+              dream career.
+            </p>
+
+            <Link to="/enroll">
+              <button>Enroll Now</button>
+            </Link>
+          </motion.div>
+
+        </div>
       </div>
-    </div>
+    </>
   );
 }

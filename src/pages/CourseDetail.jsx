@@ -1,58 +1,136 @@
 import { useParams, Link } from "react-router-dom";
+import { useEffect } from "react";
 import courseData from "./CourseData.js";
 import "../css/Course.css";
 import { motion } from "framer-motion";
 
 export default function CourseDetail() {
+
+  // ✅ Scroll To Top
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
+
   const { slug } = useParams();
 
   const course = courseData.find((c) => c.slug === slug);
-  const otherCourses = courseData.filter((c) => c.slug !== slug);
+
+  const otherCourses = courseData.filter(
+    (c) => c.slug !== slug
+  );
 
   if (!course) {
-    return <h2 style={{ padding: "100px" }}>Course Not Found</h2>;
+    return (
+      <h2 style={{ padding: "100px" }}>
+        Course Not Found
+      </h2>
+    );
   }
 
   // 🔥 Animations
   const fadeUp = {
-    hidden: { opacity: 0, y: 60 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.8 } }
+    hidden: {
+      opacity: 0,
+      y: 60,
+    },
+
+    show: {
+      opacity: 1,
+      y: 0,
+
+      transition: {
+        duration: 0.8,
+      },
+    },
   };
 
   const fadeLeft = {
-    hidden: { opacity: 0, x: -80 },
-    show: { opacity: 1, x: 0, transition: { duration: 0.8 } }
+    hidden: {
+      opacity: 0,
+      x: -80,
+    },
+
+    show: {
+      opacity: 1,
+      x: 0,
+
+      transition: {
+        duration: 0.8,
+      },
+    },
   };
 
   const fadeRight = {
-    hidden: { opacity: 0, x: 80 },
-    show: { opacity: 1, x: 0, transition: { duration: 0.8 } }
+    hidden: {
+      opacity: 0,
+      x: 80,
+    },
+
+    show: {
+      opacity: 1,
+      x: 0,
+
+      transition: {
+        duration: 0.8,
+      },
+    },
   };
 
   return (
     <div className="course-detail">
 
-      {/* HERO */}
+      {/* 🔥 HERO */}
       <div
         className="course-hero"
-        style={{ backgroundImage: `url(${course.image})` }}
+        style={{
+          backgroundImage: `url(${course.image})`,
+        }}
       >
+
         <div className="overlay"></div>
 
         <motion.div
           initial="hidden"
           animate="show"
           variants={fadeUp}
+          className="course-hero-content"
         >
+
+          <span className="course-category">
+            {course.category}
+          </span>
+
           <h1>{course.title}</h1>
+
           <p>{course.description}</p>
+
+          <div className="course-meta">
+
+            <span>
+              ⭐ {course.rating}
+            </span>
+
+            <span>
+              👨‍🎓 {course.students} Students
+            </span>
+
+            <span>
+              ⏳ {course.duration}
+            </span>
+
+          </div>
+
         </motion.div>
+
       </div>
 
-      {/* CONTENT */}
+      {/* 🔥 MAIN CONTENT */}
       <div className="course-content">
 
-        {/* LEFT */}
+        {/* 🔥 LEFT SIDE */}
         <motion.div
           className="course-left"
           variants={fadeLeft}
@@ -66,6 +144,7 @@ export default function CourseDetail() {
             className="course-video"
             variants={fadeUp}
           >
+
             <iframe
               src={course.video}
               title="Course Preview"
@@ -73,28 +152,38 @@ export default function CourseDetail() {
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             ></iframe>
+
           </motion.div>
 
-          {/* OVERVIEW */}
+          {/* 📘 OVERVIEW */}
           <motion.div
             className="course-info"
             variants={fadeUp}
           >
+
             <h3>Course Overview</h3>
+
             <p>
-              Learn with structured lessons, weekly & monthly mock tests,
-              including both objective and subjective practice. This course is
-              designed to help you crack competitive exams with confidence.
+              This course is specially designed
+              for students preparing for
+              competitive examinations with
+              structured lessons, weekly tests,
+              monthly exams, doubt-solving
+              sessions, and real exam practice.
             </p>
+
           </motion.div>
 
-          {/* SYLLABUS */}
+          {/* 📚 SYLLABUS */}
           <motion.div
             className="course-syllabus"
             variants={fadeUp}
           >
+
             <h3>Course Syllabus</h3>
+
             <ul>
+
               {course.syllabus.map((item, i) => (
                 <motion.li
                   key={i}
@@ -102,45 +191,50 @@ export default function CourseDetail() {
                   initial="hidden"
                   whileInView="show"
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
+                  transition={{
+                    delay: i * 0.1,
+                  }}
                 >
                   {item}
                 </motion.li>
               ))}
+
             </ul>
+
           </motion.div>
 
-          {/* FEATURES */}
+          {/* 🎯 FEATURES */}
           <motion.div
             className="course-features"
             variants={fadeUp}
           >
+
             <h3>What You’ll Get</h3>
+
             <ul>
-              {[
-                "✔ Weekly Mock Tests (Objective + Subjective)",
-                "✔ Monthly Full-Length Exams",
-                "✔ Doubt Solving Sessions",
-                "✔ Study Materials & Notes",
-                "✔ Real Exam Practice Environment"
-              ].map((item, i) => (
+
+              {course.features.map((item, i) => (
                 <motion.li
                   key={i}
                   variants={fadeRight}
                   initial="hidden"
                   whileInView="show"
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
+                  transition={{
+                    delay: i * 0.1,
+                  }}
                 >
                   {item}
                 </motion.li>
               ))}
+
             </ul>
+
           </motion.div>
 
         </motion.div>
 
-        {/* RIGHT SIDEBAR */}
+        {/* 🔥 RIGHT SIDEBAR */}
         <motion.div
           className="course-sidebar"
           variants={fadeRight}
@@ -148,14 +242,25 @@ export default function CourseDetail() {
           whileInView="show"
           viewport={{ once: true }}
         >
+
           <h3>{course.title}</h3>
 
-          <p className="course-price">{course.price}</p>
+          <p className="course-price">
+            {course.price}
+          </p>
+
           <p className="course-duration">
-            Duration: {course.duration}
+            ⏳ Duration: {course.duration}
+          </p>
+
+          <p className="course-mode">
+            💻 Mode:
+            {" "}
+            {course.mode.join(" / ")}
           </p>
 
           <Link to="/enroll">
+
             <motion.button
               className="enroll-btn"
               whileHover={{ scale: 1.05 }}
@@ -163,20 +268,30 @@ export default function CourseDetail() {
             >
               Enroll Now
             </motion.button>
+
           </Link>
 
           <div className="course-extra">
+
             <p>✔ Lifetime Access</p>
+
             <p>✔ Certificate Included</p>
+
             <p>✔ Mobile + Desktop Access</p>
+
             <p>✔ Weekly + Monthly Tests</p>
+
             <p>✔ Expert Mentorship</p>
+
+            <p>✔ Practical Learning</p>
+
           </div>
+
         </motion.div>
 
       </div>
 
-      {/* RELATED */}
+      {/* 🔥 RELATED COURSES */}
       <div className="related-courses">
 
         <motion.h2
@@ -189,7 +304,9 @@ export default function CourseDetail() {
         </motion.h2>
 
         <div className="related-grid">
+
           {otherCourses.map((item, i) => (
+
             <motion.div
               key={i}
               className="related-card"
@@ -197,24 +314,57 @@ export default function CourseDetail() {
               initial="hidden"
               whileInView="show"
               viewport={{ once: true }}
-              transition={{ delay: i * 0.2 }}
+              transition={{
+                delay: i * 0.2,
+              }}
             >
-              <img src={item.image} alt={item.title} />
 
-              <h4>{item.title}</h4>
-              <p>{item.description}</p>
+              <img
+                src={item.image}
+                alt={item.title}
+              />
 
-              <Link to={`/course/${item.slug}`}>
-                <motion.button
-                  className="related-btn"
-                  whileHover={{ scale: 1.05 }}
-                >
-                  View Course →
-                </motion.button>
-              </Link>
+              <div className="related-content">
+
+                <span className="related-category">
+                  {item.category}
+                </span>
+
+                <h4>{item.title}</h4>
+
+                <p>{item.description}</p>
+
+                <div className="related-meta">
+
+                  <span>
+                    ⭐ {item.rating}
+                  </span>
+
+                  <span>
+                    👨‍🎓 {item.students}
+                  </span>
+
+                </div>
+
+                <Link to={`/course/${item.slug}`}>
+
+                  <motion.button
+                    className="related-btn"
+                    whileHover={{ scale: 1.05 }}
+                  >
+                    View Course →
+                  </motion.button>
+
+                </Link>
+
+              </div>
+
             </motion.div>
+
           ))}
+
         </div>
+
       </div>
 
     </div>

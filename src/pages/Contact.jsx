@@ -6,13 +6,22 @@ import {
   FaYoutube,
   FaWhatsapp,
 } from "react-icons/fa";
+
 import "../css/Contact.css";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Contact() {
 
-  // 🔥 FORM STATE (ready for backend / email integration)
+  // ✅ Scroll To Top
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
+
+  // 🔥 FORM STATE
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -20,15 +29,40 @@ export default function Contact() {
     message: "",
   });
 
+  const [status, setStatus] = useState("");
+
+  // Handle input
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
   };
 
+  // Handle submit
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData); // 👉 replace with API later
-    alert("Message sent successfully!");
-    setFormData({ name: "", email: "", subject: "", message: "" });
+
+    setStatus("sending");
+
+    // 👉 Replace with API / EmailJS later
+    console.log(formData);
+
+    setTimeout(() => {
+      setStatus("success");
+
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+      });
+
+      setTimeout(() => {
+        setStatus("");
+      }, 3000);
+
+    }, 1200);
   };
 
   // 🔥 STAGGER ANIMATION
@@ -46,7 +80,10 @@ export default function Contact() {
     show: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.7, ease: "easeOut" },
+      transition: {
+        duration: 0.7,
+        ease: "easeOut",
+      },
     },
   };
 
@@ -55,7 +92,9 @@ export default function Contact() {
     show: {
       opacity: 1,
       x: 0,
-      transition: { duration: 0.7 },
+      transition: {
+        duration: 0.7,
+      },
     },
   };
 
@@ -64,7 +103,9 @@ export default function Contact() {
     show: {
       opacity: 1,
       x: 0,
-      transition: { duration: 0.7 },
+      transition: {
+        duration: 0.7,
+      },
     },
   };
 
@@ -82,7 +123,11 @@ export default function Contact() {
           variants={fadeUp}
         >
           <h1>Contact Us</h1>
-          <p>We are here to help you. Get in touch with us anytime.</p>
+
+          <p>
+            We are here to help you.
+            Get in touch with us anytime.
+          </p>
         </motion.div>
       </div>
 
@@ -95,22 +140,25 @@ export default function Contact() {
       >
 
         {/* 🔥 CONTACT INFO */}
-        <motion.div className="contact-info" variants={fadeLeft}>
+        <motion.div
+          className="contact-info"
+          variants={fadeLeft}
+        >
 
           {[
             {
               icon: <FaMapMarkerAlt />,
               title: "Address",
-              value: "Biratnagar-06, Morang, Nepal"
+              value: "Biratnagar-06, Morang, Nepal",
             },
             {
               icon: <FaPhoneAlt />,
               title: "Phone",
               value: (
-                <a href="tel:+9779804044190 , 9709025820">
+                <a href="tel:+9779804044190">
                   +977 9804044190 , 9709025820
                 </a>
-              )
+              ),
             },
             {
               icon: <FaEnvelope />,
@@ -119,15 +167,18 @@ export default function Contact() {
                 <a href="mailto:sharpclassplus@gmail.com">
                   sharpclassplus@gmail.com
                 </a>
-              )
-            }
+              ),
+            },
           ].map((item, i) => (
             <motion.div
               className="info-box"
               key={i}
               variants={fadeUp}
             >
-              <div className="icon">{item.icon}</div>
+              <div className="icon">
+                {item.icon}
+              </div>
+
               <div>
                 <h3>{item.title}</h3>
                 <p>{item.value}</p>
@@ -135,8 +186,12 @@ export default function Contact() {
             </motion.div>
           ))}
 
-          {/* 🔥 SOCIAL */}
-          <motion.div className="social-icons" variants={fadeUp}>
+          {/* 🔥 SOCIAL ICONS */}
+          <motion.div
+            className="social-icons"
+            variants={fadeUp}
+          >
+
             <motion.a
               href="https://www.facebook.com/people/Sharp-Class-Plus-%E0%A4%B6%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%AA-%E0%A4%95%E0%A5%8D%E0%A4%B2%E0%A4%BE%E0%A4%B8-%E0%A4%AA%E0%A5%8D%E0%A4%B2%E0%A4%B8/61570904293510/"
               target="_blank"
@@ -163,11 +218,12 @@ export default function Contact() {
             >
               <FaWhatsapp />
             </motion.a>
+
           </motion.div>
 
         </motion.div>
 
-        {/* 🔥 FORM */}
+        {/* 🔥 CONTACT FORM */}
         <motion.form
           className="contact-form"
           variants={fadeRight}
@@ -176,7 +232,20 @@ export default function Contact() {
 
           <h2>Send Us a Message</h2>
 
+          {status === "sending" && (
+            <p className="loading-msg">
+              ⏳ Sending Message...
+            </p>
+          )}
+
+          {status === "success" && (
+            <p className="success-msg">
+              ✅ Message Sent Successfully!
+            </p>
+          )}
+
           <div className="form-row">
+
             <input
               type="text"
               name="name"
@@ -194,6 +263,7 @@ export default function Contact() {
               onChange={handleChange}
               required
             />
+
           </div>
 
           <input
@@ -217,8 +287,11 @@ export default function Contact() {
             type="submit"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            disabled={status === "sending"}
           >
-            Send Message
+            {status === "sending"
+              ? "Sending..."
+              : "Send Message"}
           </motion.button>
 
         </motion.form>
@@ -233,7 +306,11 @@ export default function Contact() {
         whileInView="show"
         viewport={{ once: true }}
       >
-        <motion.h2 className="map-title" variants={fadeUp}>
+
+        <motion.h2
+          className="map-title"
+          variants={fadeUp}
+        >
           📍 Find Us on Map
         </motion.h2>
 
@@ -241,10 +318,14 @@ export default function Contact() {
           src="https://maps.google.com/maps?q=26.4612006,87.2623174&z=17&output=embed"
           width="100%"
           height="400"
-          style={{ border: 0, borderRadius: "15px" }}
+          style={{
+            border: 0,
+            borderRadius: "15px",
+          }}
           loading="lazy"
           title="map"
         ></iframe>
+
       </motion.div>
 
     </div>
